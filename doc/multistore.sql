@@ -6,7 +6,14 @@ use multistore;
 -- -----------------------------------------------------
 create table if not exists `user`(
     `id` int(10) NOT NULL,
-    `name` varchar(20) NOT NULL
+    `username` varchar(15) NOT NULL,
+    `password` varchar(60) NOT NULL,
+    `name` varchar(20) NOT NULL,
+    `surname` varchar(20) NOT NULL,
+    `address` varchar(80) NOT NULL,
+    `birthday` datetime NOT NULL,
+    -- `picture` varchar(2000), mirar como subir imagenes a symfony 
+    `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `user`
@@ -19,9 +26,14 @@ ALTER TABLE `user`
 
 create table if not exists `order`(
     `id` int(10) NOT NULL,
-    `name` varchar(20) NOT NULL,
+    `address` varchar(80) NOT NULL,
+    `amount` float(10) NOT NULL,
+    `shipping_costs` float(10) NOT NULL,
+    `state` varchar(10) NOT NULL,
     `id_user` int(10) NOT NULL,
-    `id_order_product` int(10) NOT NULL
+    `date` datetime NOT NULL,
+    `id_order_product` int(10) NOT NULL,
+    `id_store` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `order`
@@ -35,6 +47,13 @@ ALTER TABLE `order`
 create table if not exists `product`(
     `id` int(10) NOT NULL,
     `name` varchar(20) NOT NULL,
+    `store` varchar(20) NOT NULL,
+    `stock` int(3) NOT NULL,
+    `descripcion` varchar(300) NOT NULL,
+    -- `picture` varchar(2000), mirar como subir imagenes a symfony
+    `price` float(10) NOT NULL,
+    `discount` float(5) NOT NULL,
+    `second_hand` boolean NOT NULL,
     `id_category` int(10) NOT NULL,
     `id_store` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -49,7 +68,14 @@ ALTER TABLE `product`
 
 create table if not exists `store`(
     `id` int(10) NOT NULL,
-    `name` varchar(20) NOT NULL
+    `name` varchar(20) NOT NULL,
+    `username` varchar(15) NOT NULL,
+    `password` varchar(60) NOT NULL,
+    `nif` varchar(9) NOT NULL,
+    `address` varchar(80) NOT NULL,
+    `balance` float(10) NOT NULL,
+    `descripcion` varchar(300) NOT NULL,
+    `web_page` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `store`
@@ -63,6 +89,7 @@ ALTER TABLE `store`
 create table if not exists `order_product`(
     `id` int(10) NOT NULL,
     `id_order` int(20) NOT NULL,
+    `amount` int(5) NOT NULL,
     `id_product` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -76,7 +103,8 @@ ALTER TABLE `order_product`
 
  create table if not exists `category`(
     `id` int(10) NOT NULL,
-    `name` varchar(20) NOT NULL
+    `name` varchar(20) NOT NULL,
+    `descripcion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `category`
@@ -90,7 +118,8 @@ ALTER TABLE `category`
 create table if not exists `subcategory`(
     `id` int(10) NOT NULL,
     `name` varchar(20) NOT NULL,
-    `id_category` int(10) NOT NULL
+    `id_category` int(10) NOT NULL,
+    `descripcion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `subcategory`
@@ -103,7 +132,30 @@ ALTER TABLE `subcategory`
 
 create table if not exists `desktop`(
     `id` int(10) NOT NULL,
-    `name` varchar(20) NOT NULL,
+    `model` varchar(20) NOT NULL,
+    `mark` varchar(20) NOT NULL,
+    `maker` varchar(20) NOT NULL,
+    `ram_memory` varchar(20) NOT NULL,
+    `ram_technology` varchar(20) NOT NULL,
+    `ram_frequency` varchar(20) NOT NULL,
+    `hard_disk` varchar(20) NOT NULL,
+    `hard_disk_technology` varchar(20) NOT NULL,
+    `processor_maker` varchar(20) NOT NULL,
+    `processor_model` varchar(20) NOT NULL,
+    `processor_velocity` varchar(20) NOT NULL,
+    `processor_core` varchar(20) NOT NULL,
+    `processor_cache` varchar(20) NOT NULL,
+    `graphic_maker` varchar(20) NOT NULL,
+    `graphic_model` varchar(20) NOT NULL,
+    `graphic_technology` varchar(20) NOT NULL,
+    `graphic_capacity` varchar(20) NOT NULL,
+    `graphic_interface` varchar(20) NOT NULL,
+    `usb_2_0` int(2),
+    `usb_3_0` int(2),
+    `hdmi` int(2),
+    `dvi` int(2),
+    `bluetooht` int(2),
+    `size` varchar(30),
     `id_subcategory` int(10) NOT NULL,
     `id_porduct` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -118,8 +170,36 @@ ALTER TABLE `desktop`
 
 create table if not exists `laptop`(
     `id` int(10) NOT NULL,
-    `name` varchar(20) NOT NULL,
-    `id_subcategory` int(10) NOT NULL,
+    `model` varchar(20) NOT NULL,
+    `mark` varchar(20) NOT NULL,
+    `maker` varchar(20) NOT NULL,
+    `ram_memory` varchar(20) NOT NULL,
+    `ram_technology` varchar(20) NOT NULL,
+    `ram_frequency` varchar(20) NOT NULL,
+    `hard_disk` varchar(20) NOT NULL,
+    `hard_disk_technology` varchar(20) NOT NULL,
+    `processor_maker` varchar(20) NOT NULL,
+    `processor_model` varchar(20) NOT NULL,
+    `processor_velocity` varchar(20) NOT NULL,
+    `processor_core` varchar(20) NOT NULL,
+    `processor_cache` varchar(20) NOT NULL,
+    `graphic_maker` varchar(20) NOT NULL,
+    `graphic_model` varchar(20) NOT NULL,
+    `graphic_technology` varchar(20) NOT NULL,
+    `graphic_capacity` varchar(20) NOT NULL,
+    `graphic_interface` varchar(20) NOT NULL,
+    `usb_2_0` int(2),
+    `usb_3_0` int(2),
+    `hdmi` int(2),
+    `dvi` int(2),
+    `bluetooht` int(2),
+    `size` varchar(30),
+    `screen_resolution` varchar(30),
+    `screen_size` varchar(30),
+    `screen_frequency` varchar(30),
+    `baterry_capacity` varchar(30),
+    `baterry_charge_time` varchar(30),
+    `id_subcategory` int(10) NOT NULL,0
     `id_porduct` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -409,7 +489,8 @@ ALTER TABLE `product`
   ADD CONSTRAINT `id_store_fk` FOREIGN KEY (`id_store`) REFERENCES `store` (`id`);
 
 ALTER TABLE `order`
-  ADD CONSTRAINT `id_order_fk` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `id_order_fk` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+   ADD CONSTRAINT `id_order_store_fk` FOREIGN KEY (`id_store`) REFERENCES `store` (`id`);
 
 ALTER TABLE `order_product`
   ADD CONSTRAINT `id_code_product_fk` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`),
