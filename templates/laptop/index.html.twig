@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laptop index{% endblock %}
+
+{% block body %}
+    <h1>Laptop index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RamMemory</th>
+                <th>RamTechnology</th>
+                <th>RamFrequency</th>
+                <th>HardDisk</th>
+                <th>HardDiskTechnology</th>
+                <th>ProcessorMaker</th>
+                <th>ProcessorModel</th>
+                <th>ProcessorVelocity</th>
+                <th>ProcessorCore</th>
+                <th>ProcessorCache</th>
+                <th>GraphicMaker</th>
+                <th>GraphicModel</th>
+                <th>GraphicTechnology</th>
+                <th>GraphicCapacity</th>
+                <th>GraphicInterface</th>
+                <th>Usb20</th>
+                <th>Usb30</th>
+                <th>Hdmi</th>
+                <th>Dvi</th>
+                <th>Bluetooht</th>
+                <th>BluetoohtVersion</th>
+                <th>ScreenResolution</th>
+                <th>ScreenSize</th>
+                <th>ScreenFrequency</th>
+                <th>BaterryCapacity</th>
+                <th>BaterryChargeTime</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for laptop in laptops %}
+            <tr>
+                <td>{{ laptop.id }}</td>
+                <td>{{ laptop.ramMemory }}</td>
+                <td>{{ laptop.ramTechnology }}</td>
+                <td>{{ laptop.ramFrequency }}</td>
+                <td>{{ laptop.hardDisk }}</td>
+                <td>{{ laptop.hardDiskTechnology }}</td>
+                <td>{{ laptop.processorMaker }}</td>
+                <td>{{ laptop.processorModel }}</td>
+                <td>{{ laptop.processorVelocity }}</td>
+                <td>{{ laptop.processorCore }}</td>
+                <td>{{ laptop.processorCache }}</td>
+                <td>{{ laptop.graphicMaker }}</td>
+                <td>{{ laptop.graphicModel }}</td>
+                <td>{{ laptop.graphicTechnology }}</td>
+                <td>{{ laptop.graphicCapacity }}</td>
+                <td>{{ laptop.graphicInterface }}</td>
+                <td>{{ laptop.usb20 }}</td>
+                <td>{{ laptop.usb30 }}</td>
+                <td>{{ laptop.hdmi }}</td>
+                <td>{{ laptop.dvi }}</td>
+                <td>{{ laptop.bluetooht }}</td>
+                <td>{{ laptop.bluetoohtVersion }}</td>
+                <td>{{ laptop.screenResolution }}</td>
+                <td>{{ laptop.screenSize }}</td>
+                <td>{{ laptop.screenFrequency }}</td>
+                <td>{{ laptop.baterryCapacity }}</td>
+                <td>{{ laptop.baterryChargeTime }}</td>
+                <td>
+                    <a href="{{ path('laptop_show', {'id': laptop.id}) }}">show</a>
+                    <a href="{{ path('laptop_edit', {'id': laptop.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="28">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('laptop_new') }}">Create new</a>
+{% endblock %}
