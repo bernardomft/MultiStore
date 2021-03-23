@@ -2,65 +2,253 @@
 
 namespace App\Entity;
 
+use App\Repository\SmartphoneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Smartphone
- *
- * @ORM\Table(name="smartphone", indexes={@ORM\Index(name="id_cat_smartphone_fk", columns={"id_category"}), @ORM\Index(name="id_product_smartphone_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=SmartphoneRepository::class)
  */
 class Smartphone
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
-    private $name;
+    private $resolution;
 
     /**
-     * @var \Category
-     *
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_category", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=10)
+     */
+    private $resolution_px;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $battery;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $os;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $camera;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $camera_px;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $technology;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $memory;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $memory_ram;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $connectors;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $sim_type;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $sd_type;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $color;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="smartphones")
      */
     private $idCategory;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="smartphones")
      */
-    private $idPorduct;
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getResolution(): ?string
     {
-        return $this->name;
+        return $this->resolution;
     }
 
-    public function setName(string $name): self
+    public function setResolution(string $resolution): self
     {
-        $this->name = $name;
+        $this->resolution = $resolution;
+
+        return $this;
+    }
+
+    public function getResolutionPx(): ?string
+    {
+        return $this->resolution_px;
+    }
+
+    public function setResolutionPx(string $resolution_px): self
+    {
+        $this->resolution_px = $resolution_px;
+
+        return $this;
+    }
+
+    public function getBattery(): ?string
+    {
+        return $this->battery;
+    }
+
+    public function setBattery(string $battery): self
+    {
+        $this->battery = $battery;
+
+        return $this;
+    }
+
+    public function getOs(): ?string
+    {
+        return $this->os;
+    }
+
+    public function setOs(string $os): self
+    {
+        $this->os = $os;
+
+        return $this;
+    }
+
+    public function getCamera(): ?string
+    {
+        return $this->camera;
+    }
+
+    public function setCamera(string $camera): self
+    {
+        $this->camera = $camera;
+
+        return $this;
+    }
+
+    public function getCameraPx(): ?string
+    {
+        return $this->camera_px;
+    }
+
+    public function setCameraPx(string $camera_px): self
+    {
+        $this->camera_px = $camera_px;
+
+        return $this;
+    }
+
+    public function getTechnology(): ?string
+    {
+        return $this->technology;
+    }
+
+    public function setTechnology(string $technology): self
+    {
+        $this->technology = $technology;
+
+        return $this;
+    }
+
+    public function getMemory(): ?string
+    {
+        return $this->memory;
+    }
+
+    public function setMemory(string $memory): self
+    {
+        $this->memory = $memory;
+
+        return $this;
+    }
+
+    public function getMemoryRam(): ?string
+    {
+        return $this->memory_ram;
+    }
+
+    public function setMemoryRam(string $memory_ram): self
+    {
+        $this->memory_ram = $memory_ram;
+
+        return $this;
+    }
+
+    public function getConnectors(): ?string
+    {
+        return $this->connectors;
+    }
+
+    public function setConnectors(string $connectors): self
+    {
+        $this->connectors = $connectors;
+
+        return $this;
+    }
+
+    public function getSimType(): ?string
+    {
+        return $this->sim_type;
+    }
+
+    public function setSimType(string $sim_type): self
+    {
+        $this->sim_type = $sim_type;
+
+        return $this;
+    }
+
+    public function getSdType(): ?string
+    {
+        return $this->sd_type;
+    }
+
+    public function setSdType(string $sd_type): self
+    {
+        $this->sd_type = $sd_type;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }
@@ -77,17 +265,15 @@ class Smartphone
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getIdProduct(): ?Product
     {
-        return $this->idPorduct;
+        return $this->idProduct;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setIdProduct(?Product $idProduct): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->idProduct = $idProduct;
 
         return $this;
     }
-
-
 }

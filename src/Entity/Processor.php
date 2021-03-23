@@ -2,92 +2,144 @@
 
 namespace App\Entity;
 
+use App\Repository\ProcessorRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Processor
- *
- * @ORM\Table(name="processor", indexes={@ORM\Index(name="id_sub_cat_processor_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_processor_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ProcessorRepository::class)
  */
 class Processor
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $name;
+    private $size;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=10)
      */
-    private $idPorduct;
+    private $speed;
 
     /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=10)
      */
-    private $idSubcategory;
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $core_number;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $socket;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="processors")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idsubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="processors")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getSize(): ?string
     {
-        return $this->name;
+        return $this->size;
     }
 
-    public function setName(string $name): self
+    public function setSize(string $size): self
     {
-        $this->name = $name;
+        $this->size = $size;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getSpeed(): ?string
     {
-        return $this->idPorduct;
+        return $this->speed;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setSpeed(string $speed): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->speed = $speed;
 
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getType(): ?string
     {
-        return $this->idSubcategory;
+        return $this->type;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setType(string $type): self
     {
-        $this->idSubcategory = $idSubcategory;
+        $this->type = $type;
 
         return $this;
     }
 
+    public function getCoreNumber(): ?string
+    {
+        return $this->core_number;
+    }
 
+    public function setCoreNumber(string $core_number): self
+    {
+        $this->core_number = $core_number;
+
+        return $this;
+    }
+
+    public function getSocket(): ?string
+    {
+        return $this->socket;
+    }
+
+    public function setSocket(string $socket): self
+    {
+        $this->socket = $socket;
+
+        return $this;
+    }
+
+    public function getIdsubcategory(): ?SubCategory
+    {
+        return $this->idsubcategory;
+    }
+
+    public function setIdsubcategory(?SubCategory $idsubcategory): self
+    {
+        $this->idsubcategory = $idsubcategory;
+
+        return $this;
+    }
+
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
+
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

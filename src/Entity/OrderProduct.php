@@ -2,49 +2,35 @@
 
 namespace App\Entity;
 
+use App\Repository\OrderProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * OrderProduct
- *
- * @ORM\Table(name="order_product", indexes={@ORM\Index(name="id_code_product_fk", columns={"id_product"}), @ORM\Index(name="id_code_order_fk", columns={"id_order"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=OrderProductRepository::class)
  */
 class OrderProduct
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="amount", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $amount;
 
     /**
-     * @var \Order
-     *
-     * @ORM\ManyToOne(targetEntity="Order")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_order", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="orderProducts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idOrder;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_product", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=Product::class)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idProduct;
 
@@ -88,6 +74,4 @@ class OrderProduct
 
         return $this;
     }
-
-
 }

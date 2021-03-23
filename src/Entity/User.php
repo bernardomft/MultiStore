@@ -2,89 +2,154 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=15, nullable=false)
+     * @ORM\Column(type="json")
      */
-    private $username;
+    private $roles = [];
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=60, nullable=false)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=15)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="string", length=60)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="string", length=20)
      */
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="surname", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $surname;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=80, nullable=false)
+     * @ORM\Column(type="string", length=80)
      */
     private $address;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="birthday", type="datetime", nullable=false)
+     * @ORM\Column(type="datetime")
      */
     private $birthday;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="picture", type="string", length=2000, nullable=false)
+     * @ORM\Column(type="string", length=60, nullable=true)
      */
     private $picture;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="role", type="integer", nullable=false)
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="idUser")
      */
-    private $role;
+    private $orders;
 
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function setId(string $id): self
     {
-        return $this->username;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->id;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function setUsername(string $username): self
@@ -94,14 +159,14 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getEmail(): ?string
     {
-        return $this->password;
+        return $this->email;
     }
 
-    public function setPassword(string $password): self
+    public function setEmail(string $email): self
     {
-        $this->password = $password;
+        $this->email = $email;
 
         return $this;
     }
@@ -159,24 +224,40 @@ class User
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
         return $this;
     }
 
-    public function getRole(): ?int
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
     {
-        return $this->role;
+        return $this->orders;
     }
 
-    public function setRole(int $role): self
+    public function addOrder(Order $order): self
     {
-        $this->role = $role;
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setIdUser($this);
+        }
 
         return $this;
     }
 
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getIdUser() === $this) {
+                $order->setIdUser(null);
+            }
+        }
 
+        return $this;
+    }
 }

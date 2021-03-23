@@ -2,77 +2,84 @@
 
 namespace App\Entity;
 
+use App\Repository\WebcamRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Webcam
- *
- * @ORM\Table(name="webcam", indexes={@ORM\Index(name="id_sub_cat_webcam_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_webcam_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=WebcamRepository::class)
  */
 class Webcam
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
-    private $name;
+    private $resolution_px;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=10)
      */
-    private $idPorduct;
+    private $sound;
 
     /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=10)
+     */
+    private $connection;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="webcams")
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="webcams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getResolutionPx(): ?string
     {
-        return $this->name;
+        return $this->resolution_px;
     }
 
-    public function setName(string $name): self
+    public function setResolutionPx(string $resolution_px): self
     {
-        $this->name = $name;
+        $this->resolution_px = $resolution_px;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getSound(): ?string
     {
-        return $this->idPorduct;
+        return $this->sound;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setSound(string $sound): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->sound = $sound;
+
+        return $this;
+    }
+
+    public function getConnection(): ?string
+    {
+        return $this->connection;
+    }
+
+    public function setConnection(string $connection): self
+    {
+        $this->connection = $connection;
 
         return $this;
     }
@@ -89,5 +96,15 @@ class Webcam
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

@@ -2,92 +2,92 @@
 
 namespace App\Entity;
 
+use App\Repository\PowerSupplyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PowerSupply
- *
- * @ORM\Table(name="power_supply", indexes={@ORM\Index(name="id_sub_cat_power_supply_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_power_supply_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=PowerSupplyRepository::class)
  */
 class PowerSupply
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $name;
+    private $size;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=10)
      */
-    private $idPorduct;
+    private $potency;
 
     /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="powerSupplies")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="powerSupplies")
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getSize(): ?string
     {
-        return $this->name;
+        return $this->size;
     }
 
-    public function setName(string $name): self
+    public function setSize(string $size): self
     {
-        $this->name = $name;
+        $this->size = $size;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getPotency(): ?string
     {
-        return $this->idPorduct;
+        return $this->potency;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setPotency(string $potency): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->potency = $potency;
 
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

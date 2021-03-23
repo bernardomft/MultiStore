@@ -2,92 +2,127 @@
 
 namespace App\Entity;
 
+use App\Repository\SmartWatchRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Smartwatch
- *
- * @ORM\Table(name="smartwatch", indexes={@ORM\Index(name="id_sub_cat_smartwatch_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_smartwatch_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=SmartWatchRepository::class)
  */
-class Smartwatch
+class SmartWatch
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $name;
+    private $so;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=20)
      */
-    private $idPorduct;
+    private $resolution;
 
     /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=20)
+     */
+    private $resolution_px;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $technology;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="smartWatches")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="smartWatches")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getSo(): ?string
     {
-        return $this->name;
+        return $this->so;
     }
 
-    public function setName(string $name): self
+    public function setSo(string $so): self
     {
-        $this->name = $name;
+        $this->so = $so;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getResolution(): ?string
     {
-        return $this->idPorduct;
+        return $this->resolution;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setResolution(string $resolution): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->resolution = $resolution;
 
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getResolutionPx(): ?string
+    {
+        return $this->resolution_px;
+    }
+
+    public function setResolutionPx(string $resolution_px): self
+    {
+        $this->resolution_px = $resolution_px;
+
+        return $this;
+    }
+
+    public function getTechnology(): ?string
+    {
+        return $this->technology;
+    }
+
+    public function setTechnology(string $technology): self
+    {
+        $this->technology = $technology;
+
+        return $this;
+    }
+
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

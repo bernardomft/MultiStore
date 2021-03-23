@@ -2,92 +2,92 @@
 
 namespace App\Entity;
 
+use App\Repository\DeviceCaseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DeviceCase
- *
- * @ORM\Table(name="device_case", indexes={@ORM\Index(name="id_sub_cat_device_case_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_device_case_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=DeviceCaseRepository::class)
  */
 class DeviceCase
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $name;
+    private $device;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=20)
      */
-    private $idPorduct;
+    private $color;
 
     /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="deviceCases")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="deviceCases")
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getDevice(): ?string
     {
-        return $this->name;
+        return $this->device;
     }
 
-    public function setName(string $name): self
+    public function setDevice(string $device): self
     {
-        $this->name = $name;
+        $this->device = $device;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getColor(): ?string
     {
-        return $this->idPorduct;
+        return $this->color;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setColor(string $color): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->color = $color;
 
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

@@ -2,80 +2,72 @@
 
 namespace App\Entity;
 
+use App\Repository\StoreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Store
- *
- * @ORM\Table(name="store")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=StoreRepository::class)
  */
 class Store
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=15, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $username;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=60, nullable=false)
-     */
-    private $password;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nif", type="string", length=9, nullable=false)
+     * @ORM\Column(type="string", length=9)
      */
     private $nif;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=80, nullable=false)
+     * @ORM\Column(type="string", length=80)
      */
     private $address;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="balance", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(type="float")
      */
     private $balance;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="descripcion", type="string", length=300, nullable=false)
+     * @ORM\Column(type="string", length=300)
      */
-    private $descripcion;
+    private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="web_page", type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=50)
      */
     private $webPage;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     */
+    private $idUser;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="idStore")
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,18 +94,6 @@ class Store
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
 
         return $this;
     }
@@ -154,14 +134,14 @@ class Store
         return $this;
     }
 
-    public function getDescripcion(): ?string
+    public function getDescription(): ?string
     {
-        return $this->descripcion;
+        return $this->description;
     }
 
-    public function setDescripcion(string $descripcion): self
+    public function setDescription(string $description): self
     {
-        $this->descripcion = $descripcion;
+        $this->description = $description;
 
         return $this;
     }
@@ -178,5 +158,45 @@ class Store
         return $this;
     }
 
+    public function getIdUser(): ?User
+    {
+        return $this->idUser;
+    }
 
+    public function setIdUser(?User $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setIdStore($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getIdStore() === $this) {
+                $product->setIdStore(null);
+            }
+        }
+
+        return $this;
+    }
 }

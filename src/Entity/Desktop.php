@@ -2,184 +2,127 @@
 
 namespace App\Entity;
 
+use App\Repository\DesktopRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Desktop
- *
- * @ORM\Table(name="desktop", indexes={@ORM\Index(name="id_sub_cat_desktop_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_desktop_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=DesktopRepository::class)
  */
 class Desktop
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ram_memory", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $ramMemory;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ram_technology", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $ramTechnology;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ram_frequency", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
-    private $ramFrequency;
+    private $RamFrequency;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="hard_disk", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $hardDisk;
+    private $HardDisk;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="hard_disk_technology", type="string", length=20, nullable=false)
-     */
-    private $hardDiskTechnology;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_maker", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorMaker;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_model", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorModel;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_velocity", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorVelocity;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_core", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorCore;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_cache", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorCache;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_maker", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicMaker;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_model", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicModel;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_technology", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicTechnology;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_capacity", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicCapacity;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_interface", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicInterface;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="usb_2_0", type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $usb20;
+    private $usb2_0;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="usb_3_0", type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $usb30;
+    private $usb3_0;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="hdmi", type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $hdmi;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="dvi", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $dvi;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="bluetooht", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $bluetooht;
+    private $bluetooth;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
-     */
-    private $idPorduct;
-
-    /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="desktops")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="desktops")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
@@ -212,36 +155,24 @@ class Desktop
 
     public function getRamFrequency(): ?string
     {
-        return $this->ramFrequency;
+        return $this->RamFrequency;
     }
 
-    public function setRamFrequency(string $ramFrequency): self
+    public function setRamFrequency(?string $RamFrequency): self
     {
-        $this->ramFrequency = $ramFrequency;
+        $this->RamFrequency = $RamFrequency;
 
         return $this;
     }
 
     public function getHardDisk(): ?string
     {
-        return $this->hardDisk;
+        return $this->HardDisk;
     }
 
-    public function setHardDisk(string $hardDisk): self
+    public function setHardDisk(string $HardDisk): self
     {
-        $this->hardDisk = $hardDisk;
-
-        return $this;
-    }
-
-    public function getHardDiskTechnology(): ?string
-    {
-        return $this->hardDiskTechnology;
-    }
-
-    public function setHardDiskTechnology(string $hardDiskTechnology): self
-    {
-        $this->hardDiskTechnology = $hardDiskTechnology;
+        $this->HardDisk = $HardDisk;
 
         return $this;
     }
@@ -368,24 +299,24 @@ class Desktop
 
     public function getUsb20(): ?int
     {
-        return $this->usb20;
+        return $this->usb2_0;
     }
 
-    public function setUsb20(?int $usb20): self
+    public function setUsb20(int $usb2_0): self
     {
-        $this->usb20 = $usb20;
+        $this->usb2_0 = $usb2_0;
 
         return $this;
     }
 
     public function getUsb30(): ?int
     {
-        return $this->usb30;
+        return $this->usb3_0;
     }
 
-    public function setUsb30(?int $usb30): self
+    public function setUsb30(int $usb3_0): self
     {
-        $this->usb30 = $usb30;
+        $this->usb3_0 = $usb3_0;
 
         return $this;
     }
@@ -395,7 +326,7 @@ class Desktop
         return $this->hdmi;
     }
 
-    public function setHdmi(?int $hdmi): self
+    public function setHdmi(int $hdmi): self
     {
         $this->hdmi = $hdmi;
 
@@ -414,26 +345,14 @@ class Desktop
         return $this;
     }
 
-    public function getBluetooht(): ?int
+    public function getBluetooth(): ?int
     {
-        return $this->bluetooht;
+        return $this->bluetooth;
     }
 
-    public function setBluetooht(?int $bluetooht): self
+    public function setBluetooth(?int $bluetooth): self
     {
-        $this->bluetooht = $bluetooht;
-
-        return $this;
-    }
-
-    public function getIdPorduct(): ?Product
-    {
-        return $this->idPorduct;
-    }
-
-    public function setIdPorduct(?Product $idPorduct): self
-    {
-        $this->idPorduct = $idPorduct;
+        $this->bluetooth = $bluetooth;
 
         return $this;
     }
@@ -450,5 +369,15 @@ class Desktop
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

@@ -2,92 +2,92 @@
 
 namespace App\Entity;
 
+use App\Repository\HeadphonesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Headphones
- *
- * @ORM\Table(name="headphones", indexes={@ORM\Index(name="id_sub_cat_headphones_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_headphones_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=HeadphonesRepository::class)
  */
 class Headphones
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $name;
+    private $type;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=20)
      */
-    private $idPorduct;
+    private $connection;
 
     /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=subCategory::class, inversedBy="headphones")
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="headphones")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getType(): ?string
     {
-        return $this->name;
+        return $this->type;
     }
 
-    public function setName(string $name): self
+    public function setType(string $type): self
     {
-        $this->name = $name;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getConnection(): ?string
     {
-        return $this->idPorduct;
+        return $this->connection;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setConnection(string $connection): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->connection = $connection;
 
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?subCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?subCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

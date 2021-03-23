@@ -2,226 +2,162 @@
 
 namespace App\Entity;
 
+use App\Repository\LaptopRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Laptop
- *
- * @ORM\Table(name="laptop", indexes={@ORM\Index(name="id_sub_cat_laptop_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_laptop_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=LaptopRepository::class)
  */
 class Laptop
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ram_memory", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $ramMemory;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ram_technology", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $ramTechnology;
+    private $ramTechology;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ram_frequency", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $ramFrequency;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="hard_disk", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $hardDisk;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="hard_disk_technology", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $hardDiskTechnology;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_maker", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorMaker;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_model", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorModel;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_velocity", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorVelocity;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_core", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorCore;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="processor_cache", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $processorCache;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_maker", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicMaker;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_model", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicModel;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_technology", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicTechnology;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_capacity", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicCapacity;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="graphic_interface", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $graphicInterface;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="usb_2_0", type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
-    private $usb20;
+    private $usb2_0;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="usb_3_0", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $usb30;
+    private $usb3_0;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="hdmi", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $hdmi;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="dvi", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $dvi;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="bluetooht", type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $bluetooht;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="bluetooht_version", type="string", length=5, nullable=true)
+     * @ORM\Column(type="string", length=5, nullable=true)
      */
-    private $bluetoohtVersion;
+    private $bluetooht_version;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="screen_resolution", type="string", length=30, nullable=true)
-     */
-    private $screenResolution;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="screen_size", type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $screenSize;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="screen_frequency", type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30)
+     */
+    private $screenResolution;
+
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $screenFrequency;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="baterry_capacity", type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
-    private $baterryCapacity;
+    private $batteryCapacity;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="baterry_charge_time", type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
-    private $baterryChargeTime;
+    private $batteryChargeTime;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
-     */
-    private $idPorduct;
-
-    /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="laptops")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="laptops")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
@@ -240,14 +176,14 @@ class Laptop
         return $this;
     }
 
-    public function getRamTechnology(): ?string
+    public function getRamTechology(): ?string
     {
-        return $this->ramTechnology;
+        return $this->ramTechology;
     }
 
-    public function setRamTechnology(string $ramTechnology): self
+    public function setRamTechology(string $ramTechology): self
     {
-        $this->ramTechnology = $ramTechnology;
+        $this->ramTechology = $ramTechology;
 
         return $this;
     }
@@ -257,7 +193,7 @@ class Laptop
         return $this->ramFrequency;
     }
 
-    public function setRamFrequency(string $ramFrequency): self
+    public function setRamFrequency(?string $ramFrequency): self
     {
         $this->ramFrequency = $ramFrequency;
 
@@ -410,24 +346,24 @@ class Laptop
 
     public function getUsb20(): ?int
     {
-        return $this->usb20;
+        return $this->usb2_0;
     }
 
-    public function setUsb20(?int $usb20): self
+    public function setUsb20(int $usb2_0): self
     {
-        $this->usb20 = $usb20;
+        $this->usb2_0 = $usb2_0;
 
         return $this;
     }
 
     public function getUsb30(): ?int
     {
-        return $this->usb30;
+        return $this->usb3_0;
     }
 
-    public function setUsb30(?int $usb30): self
+    public function setUsb30(?int $usb3_0): self
     {
-        $this->usb30 = $usb30;
+        $this->usb3_0 = $usb3_0;
 
         return $this;
     }
@@ -470,24 +406,12 @@ class Laptop
 
     public function getBluetoohtVersion(): ?string
     {
-        return $this->bluetoohtVersion;
+        return $this->bluetooht_version;
     }
 
-    public function setBluetoohtVersion(?string $bluetoohtVersion): self
+    public function setBluetoohtVersion(?string $bluetooht_version): self
     {
-        $this->bluetoohtVersion = $bluetoohtVersion;
-
-        return $this;
-    }
-
-    public function getScreenResolution(): ?string
-    {
-        return $this->screenResolution;
-    }
-
-    public function setScreenResolution(?string $screenResolution): self
-    {
-        $this->screenResolution = $screenResolution;
+        $this->bluetooht_version = $bluetooht_version;
 
         return $this;
     }
@@ -504,6 +428,18 @@ class Laptop
         return $this;
     }
 
+    public function getScreenResolution(): ?string
+    {
+        return $this->screenResolution;
+    }
+
+    public function setScreenResolution(string $screenResolution): self
+    {
+        $this->screenResolution = $screenResolution;
+
+        return $this;
+    }
+
     public function getScreenFrequency(): ?string
     {
         return $this->screenFrequency;
@@ -516,53 +452,51 @@ class Laptop
         return $this;
     }
 
-    public function getBaterryCapacity(): ?string
+    public function getBatteryCapacity(): ?string
     {
-        return $this->baterryCapacity;
+        return $this->batteryCapacity;
     }
 
-    public function setBaterryCapacity(?string $baterryCapacity): self
+    public function setBatteryCapacity(?string $batteryCapacity): self
     {
-        $this->baterryCapacity = $baterryCapacity;
+        $this->batteryCapacity = $batteryCapacity;
 
         return $this;
     }
 
-    public function getBaterryChargeTime(): ?string
+    public function getBatteryChargeTime(): ?string
     {
-        return $this->baterryChargeTime;
+        return $this->batteryChargeTime;
     }
 
-    public function setBaterryChargeTime(?string $baterryChargeTime): self
+    public function setBatteryChargeTime(?string $batteryChargeTime): self
     {
-        $this->baterryChargeTime = $baterryChargeTime;
+        $this->batteryChargeTime = $batteryChargeTime;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
-    {
-        return $this->idPorduct;
-    }
-
-    public function setIdPorduct(?Product $idPorduct): self
-    {
-        $this->idPorduct = $idPorduct;
-
-        return $this;
-    }
-
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

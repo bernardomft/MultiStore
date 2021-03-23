@@ -2,92 +2,110 @@
 
 namespace App\Entity;
 
+use App\Repository\ChargerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Charger
- *
- * @ORM\Table(name="charger", indexes={@ORM\Index(name="id_sub_cat_charger_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_charger_fk", columns={"id_porduct"})})
- * @ORM\Entity(repositoryClass="App\Repository\ChargerRepository")
+ * @ORM\Entity(repositoryClass=ChargerRepository::class)
  */
 class Charger
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $name;
+    private $voltage;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=20)
      */
-    private $idPorduct;
+    private $amperage;
 
     /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="string", length=20)
+     */
+    private $connection;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="chargers")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="chargers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getVoltage(): ?string
     {
-        return $this->name;
+        return $this->voltage;
     }
 
-    public function setName(string $name): self
+    public function setVoltage(string $voltage): self
     {
-        $this->name = $name;
+        $this->voltage = $voltage;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
+    public function getAmperage(): ?string
     {
-        return $this->idPorduct;
+        return $this->amperage;
     }
 
-    public function setIdPorduct(?Product $idPorduct): self
+    public function setAmperage(string $amperage): self
     {
-        $this->idPorduct = $idPorduct;
+        $this->amperage = $amperage;
 
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getConnection(): ?string
+    {
+        return $this->connection;
+    }
+
+    public function setConnection(string $connection): self
+    {
+        $this->connection = $connection;
+
+        return $this;
+    }
+
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

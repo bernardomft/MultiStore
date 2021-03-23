@@ -2,100 +2,72 @@
 
 namespace App\Entity;
 
+use App\Repository\ScreenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Screen
- *
- * @ORM\Table(name="screen", indexes={@ORM\Index(name="id_sub_cat_screen_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_screen_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ScreenRepository::class)
  */
 class Screen
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="size", type="string", length=4, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $size;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="resolution", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $resolution;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="resolution_px", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
-    private $resolutionPx;
+    private $resolution_px;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="frequency", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $frequency;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="response_time", type="string", length=5, nullable=true)
+     * @ORM\Column(type="string", length=5)
      */
-    private $responseTime;
+    private $response_time;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="shine", type="string", length=8, nullable=true)
+     * @ORM\Column(type="string", length=8)
      */
     private $shine;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="view", type="string", length=8, nullable=true)
+     * @ORM\Column(type="string", length=8, nullable=true)
      */
     private $view;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="connectors", type="string", length=8, nullable=true)
+     * @ORM\Column(type="string", length=20)
      */
     private $connectors;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
-     */
-    private $idPorduct;
-
-    /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="screens")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="screens")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
@@ -128,12 +100,12 @@ class Screen
 
     public function getResolutionPx(): ?string
     {
-        return $this->resolutionPx;
+        return $this->resolution_px;
     }
 
-    public function setResolutionPx(string $resolutionPx): self
+    public function setResolutionPx(string $resolution_px): self
     {
-        $this->resolutionPx = $resolutionPx;
+        $this->resolution_px = $resolution_px;
 
         return $this;
     }
@@ -152,12 +124,12 @@ class Screen
 
     public function getResponseTime(): ?string
     {
-        return $this->responseTime;
+        return $this->response_time;
     }
 
-    public function setResponseTime(?string $responseTime): self
+    public function setResponseTime(string $response_time): self
     {
-        $this->responseTime = $responseTime;
+        $this->response_time = $response_time;
 
         return $this;
     }
@@ -167,7 +139,7 @@ class Screen
         return $this->shine;
     }
 
-    public function setShine(?string $shine): self
+    public function setShine(string $shine): self
     {
         $this->shine = $shine;
 
@@ -191,36 +163,34 @@ class Screen
         return $this->connectors;
     }
 
-    public function setConnectors(?string $connectors): self
+    public function setConnectors(string $connectors): self
     {
         $this->connectors = $connectors;
 
         return $this;
     }
 
-    public function getIdPorduct(): ?Product
-    {
-        return $this->idPorduct;
-    }
-
-    public function setIdPorduct(?Product $idPorduct): self
-    {
-        $this->idPorduct = $idPorduct;
-
-        return $this;
-    }
-
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }

@@ -2,86 +2,64 @@
 
 namespace App\Entity;
 
+use App\Repository\OrderRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Order
- *
- * @ORM\Table(name="order", indexes={@ORM\Index(name="id_order_fk", columns={"id_user"}), @ORM\Index(name="id_order_store_fk", columns={"id_store"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=OrderRepository::class)
+ * @ORM\Table(name="`order`")
  */
 class Order
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=80, nullable=false)
+     * @ORM\Column(type="string", length=80)
      */
     private $address;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="amount", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(type="float")
      */
     private $amount;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="shipping_costs", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(type="float")
      */
-    private $shippingCosts;
+    private $shippiingCosts;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="state", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=10)
      */
     private $state;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime", nullable=false)
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_order_product", type="integer", nullable=false)
-     */
-    private $idOrderProduct;
-
-    /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idUser;
 
     /**
-     * @var \Store
-     *
-     * @ORM\ManyToOne(targetEntity="Store")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_store", referencedColumnName="id")
-     * })
+     * @ORM\OneToMany(targetEntity=OrderProduct::class, mappedBy="idOrder")
      */
-    private $idStore;
+    private $orderProducts;
+
+    public function __construct()
+    {
+        $this->orderProducts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,14 +90,14 @@ class Order
         return $this;
     }
 
-    public function getShippingCosts(): ?float
+    public function getShippiingCosts(): ?float
     {
-        return $this->shippingCosts;
+        return $this->shippiingCosts;
     }
 
-    public function setShippingCosts(float $shippingCosts): self
+    public function setShippiingCosts(float $shippiingCosts): self
     {
-        $this->shippingCosts = $shippingCosts;
+        $this->shippiingCosts = $shippiingCosts;
 
         return $this;
     }
@@ -148,18 +126,6 @@ class Order
         return $this;
     }
 
-    public function getIdOrderProduct(): ?int
-    {
-        return $this->idOrderProduct;
-    }
-
-    public function setIdOrderProduct(int $idOrderProduct): self
-    {
-        $this->idOrderProduct = $idOrderProduct;
-
-        return $this;
-    }
-
     public function getIdUser(): ?User
     {
         return $this->idUser;
@@ -172,17 +138,33 @@ class Order
         return $this;
     }
 
-    public function getIdStore(): ?Store
+    /**
+     * @return Collection|OrderProduct[]
+     */
+    public function getOrderProducts(): Collection
     {
-        return $this->idStore;
+        return $this->orderProducts;
     }
 
-    public function setIdStore(?Store $idStore): self
+    public function addOrderProduct(OrderProduct $orderProduct): self
     {
-        $this->idStore = $idStore;
+        if (!$this->orderProducts->contains($orderProduct)) {
+            $this->orderProducts[] = $orderProduct;
+            $orderProduct->setIdOrder($this);
+        }
 
         return $this;
     }
 
+    public function removeOrderProduct(OrderProduct $orderProduct): self
+    {
+        if ($this->orderProducts->removeElement($orderProduct)) {
+            // set the owning side to null (unless already changed)
+            if ($orderProduct->getIdOrder() === $this) {
+                $orderProduct->setIdOrder(null);
+            }
+        }
 
+        return $this;
+    }
 }

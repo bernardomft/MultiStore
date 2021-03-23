@@ -1,8 +1,10 @@
-drop database if exists multistore;
+drop database if exists multistore_prueba;
 
-create database if not exists  multistore;
+create database if not exists  multistore_prueba;
 
-use multistore;
+use multistore_prueba;
+
+-- (repositoryClass="App\Repository\CategoryRepository")
 -- -----------------------------------------------------
 create table if not exists `user`(
     `id` int(10) NOT NULL,
@@ -13,7 +15,7 @@ create table if not exists `user`(
     `surname` varchar(20) NOT NULL,
     `address` varchar(80) NOT NULL,
     `birthday` datetime NOT NULL,
-    `picture` varchar(2000) NOT NULL, 
+    `picture` varchar(60), 
     `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -236,7 +238,7 @@ create table if not exists `keyboard`(
     `type` varchar(20) NOT NULL,
     `type_2` boolean NOT NULL, -- wirelles
     `connector` varchar(20) NOT NULL,
-    `weight` varchar(30),
+    `weight` varchar(30), -- esta en product
     `id_subcategory` int(10) NOT NULL,
     `id_porduct` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

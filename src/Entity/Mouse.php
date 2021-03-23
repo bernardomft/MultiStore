@@ -2,79 +2,57 @@
 
 namespace App\Entity;
 
+use App\Repository\MouseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Mouse
- *
- * @ORM\Table(name="mouse", indexes={@ORM\Index(name="id_sub_cat_mouse_fk", columns={"id_subcategory"}), @ORM\Index(name="id_product_mouse_fk", columns={"id_porduct"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=MouseRepository::class)
  */
 class Mouse
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="dpi", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $dpi;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $type;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="type_2", type="boolean", nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
-    private $type2;
+    private $type_2;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="connector", type="string", length=20, nullable=false)
+     * @ORM\Column(type="string", length=20)
      */
     private $connector;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="frequency", type="string", length=20, nullable=true)
+     * @ORM\Column(type="string", length=20)
      */
     private $frequency;
 
     /**
-     * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_porduct", referencedColumnName="id")
-     * })
-     */
-    private $idPorduct;
-
-    /**
-     * @var \Subcategory
-     *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_subcategory", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="Mouse")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="Mouse")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idProduct;
 
     public function getId(): ?int
     {
@@ -105,14 +83,14 @@ class Mouse
         return $this;
     }
 
-    public function getType2(): ?bool
+    public function getType2(): ?string
     {
-        return $this->type2;
+        return $this->type_2;
     }
 
-    public function setType2(bool $type2): self
+    public function setType2(string $type_2): self
     {
-        $this->type2 = $type2;
+        $this->type_2 = $type_2;
 
         return $this;
     }
@@ -134,21 +112,9 @@ class Mouse
         return $this->frequency;
     }
 
-    public function setFrequency(?string $frequency): self
+    public function setFrequency(string $frequency): self
     {
         $this->frequency = $frequency;
-
-        return $this;
-    }
-
-    public function getIdPorduct(): ?Product
-    {
-        return $this->idPorduct;
-    }
-
-    public function setIdPorduct(?Product $idPorduct): self
-    {
-        $this->idPorduct = $idPorduct;
 
         return $this;
     }
@@ -165,5 +131,15 @@ class Mouse
         return $this;
     }
 
+    public function getIdProduct(): ?Product
+    {
+        return $this->idProduct;
+    }
 
+    public function setIdProduct(?Product $idProduct): self
+    {
+        $this->idProduct = $idProduct;
+
+        return $this;
+    }
 }
