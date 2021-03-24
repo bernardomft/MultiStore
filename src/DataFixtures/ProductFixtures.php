@@ -18,6 +18,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     public const STOCK = [4];
     public const PRICE = [205.00];
     public const DISCOUNT = [8];
+    public const PICTURES =  ['Hp_Elite_8300_SFF.jpg'];
     public function load(ObjectManager $manager)
     {
         for($i=0;$i<sizeof(self::NAMES);$i++){
@@ -28,7 +29,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setMaker(self::MARKERS[$i]);
             $product->setStock(self::STOCK[$i]);
             $product->setDescription('description' . self::NAMES[$i]);
-            $product->setPicture('no hay foto de momento');
+            $product->setPicture(self::PICTURES[$i]);
             $product->setPrice(self::PRICE[$i]);
             $product->setDisscount(self::DISCOUNT[$i]);
             $product->setSecondHand(false);

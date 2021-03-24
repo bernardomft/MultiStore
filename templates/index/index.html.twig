@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Productos
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid w-75 mt-3 index-image p-5">
+		<div class="row justify-content-center align-items-between">
+			<h2 class="h2 col-12 text-center">Tu tienda online de confianza<h2>
+					<p class="lead col-12  text-justify mt-2 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id porta magna. Sed et eleifend elit. Donec vitae leo vitae augue volutpat ultrices eu ut velit. Quisque ac arcu felis. Ut aliquet, nibh eu consequat maximus, erat orci ullamcorper nibh, a molestie lectus lorem eget arcu. Donec molestie urna sapien, quis ornare diam luctus in. Maecenas dapibus aliquet lacus, in elementum erat fermentum id. Cras velit metus, porttitor pharetra ullamcorper at, iaculis id purus.</p>
+				</div>
+			</div>
+
+			<div class="container fluid w-75 mt-3">
+				<div class="row">
+					<h2 class="h2 col-12 text-center">Descubre nuestra gama de poductos<h2></div>
+						<div class="col-12 row align-content-around">
+							<h4 class="h4 col-12 text-left">PC/Sobremesa<h4></div>
+								{% for  i,product in products %}
+									<div class=" col-3 card" style="width: 18rem;">
+										<img class="card-img-top" src="{{ asset('images/Desktops/' ~ product.picture ) }}" alt="Card image cap">
+										<div class="card-body">
+											<h5 class="card-title">{{ product.name }}</h5>
+                                            <p class="card-text"> Memoria Ram:{{ desktops[i].ramMemory}}</p>
+                                            <p class="card-text"> Procesador :{{ desktops[i].processorModel}}</p>
+											<p class="card-text"> {{ product.description}}</p>
+                                            <p class="card-text">Stock:  {{ product.stock}}</p>
+                                            <p class="card-text">Precio:  {{ product.price}} $</p>
+											<a href="#" class="btn btn-primary">Añadir al carrito</a>
+										</div>
+									</div>
+								{% endfor %}
+
+							</div>
+						{% endblock %}

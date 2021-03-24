@@ -113,7 +113,7 @@ class Desktop
     private $bluetooth;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="desktops")
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="desktops")
      * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
