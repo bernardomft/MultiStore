@@ -32,7 +32,7 @@
 													<p class="card-text">Precio:
 														{{ product.price}}
 														$</p>
-													<a href="#" class="btn btn-primary">Añadir al carrito</a>
+													<a href=" {{ asset('/desktop/getProduct/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
 												</div>
 											</div>
 										{% endfor %}

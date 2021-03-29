@@ -43,7 +43,7 @@ class Mouse
     private $frequency;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="Mouse")
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="Mouse")
      * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
@@ -119,12 +119,12 @@ class Mouse
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 

@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Desktop;
 
 use App\Repository\CategoryRepository;
-use App\Repository\SubCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,5 +54,13 @@ class ProductController extends AbstractController
             'products' => $productsDesktops,
             'desktops' => $desktops
         ]);
+    }
+
+     /**
+     * @Route("/getCartInfo/{str}", options={"expose"=true}, name="app_getCartInfo", methods={"GET","POST"})
+     */
+    public function getCartInfo()
+    {
+        
     }
 }

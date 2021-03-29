@@ -33,7 +33,7 @@ class Keyboard
     private $connector;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="keyboards")
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="keyboards")
      * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
@@ -85,12 +85,12 @@ class Keyboard
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
