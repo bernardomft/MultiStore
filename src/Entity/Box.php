@@ -28,7 +28,7 @@ class Box
     private $color;
 
     /**
-     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="boxes")
+     * @ORM\ManyToOne(targetEntity=subCategory::class, inversedBy="boxes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;
@@ -68,12 +68,12 @@ class Box
         return $this;
     }
 
-    public function getIdSubcategory(): ?SubCategory
+    public function getIdSubcategory(): ?subCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?SubCategory $idSubcategory): self
+    public function setIdSubcategory(?subCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 

@@ -1,174 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DesktopController!
-{% endblock %}
+{% block title %}Hello DesktopController!{% endblock %}
 
 {% block body %}
-	<div class="col-12 row justify-content-around mt-5">
-		<div class="col-4">
-			<img class="" src="{{ asset('images/Desktops/' ~ product.picture ) }}" alt="Card image cap" width"500px" height="500px"/>
-		</div>
-
-		<div class="col-6 row align-content-start">
-			<h1 class="h2 col-12">
-				{{product.name}}
-			</h1>
-			<h4 class="h4 offset-1 col-11 mt-4 lead">
-				Fabricante:
-				{{product.mark}}
-			</h4>
-			<h4 class="h4 offset-1 col-11 mt-4 lead">
-				Modelo:
-				{{product.model}}
-			</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
-				Memoria RAM:
-				{{desktop.ramMemory}}
-				{{desktop.ramTechnology}}</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
-				Procesador:
-				{{desktop.processorMaker}}
-				{{desktop.processorModel}}</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
-				Tarjeta gráfica:
-				{{desktop.graphicMaker}}
-				{{desktop.graphicModel}}
-				{{desktop.graphicCapacity}}</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
-				S.O.:
-				{{desktop.os}}</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
-				Precio:
-				{{product.price}}
-				$</h4>
-			<select id="stockSelect"class="offset-1 col-4 mt-4 lead form-select" aria-label="Default select example">
-				<option selected>1</option>
-                {% for i in 2..product.stock %}
-                    <option value="1">{{ i }}</option>
-                {% endfor %}
-			</select>
-			<a href="#" onclick='addToCart({{ product.id }})' class=" offset-1 col-6 mt-4 lead btn btn-primary">
-				Añadir al carrito
-			</a>
-		</div>
-		<div class="col-6 mt-3 row">
-			<h2 class="h2 col-12">
-				Descripciónn</h2>
-			<p class="p col-12 leaf text-align-justify">
-				{{product.description}}
-			</p>
-			<table class="mt-4 col-12 table">
-				<tbody>
-					<tr>
-						<th scope="row">Fabricante</th>
-						<td>{{product.maker}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Nombre</th>
-						<td>{{product.name}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Modelo</th>
-						<td>{{product.model}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Segunda Mano</th>
-						<td>{{product.secondHand}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Dimensiones</th>
-						<td>{{product.dimensions}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Peso</th>
-						<td>{{product.weight}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Año</th>
-						<td>{{product.year}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Capacidad de la memoria ram</th>
-						<td>{{desktop.ramMemory}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Frequencia de la memoria ram</th>
-						<td>{{desktop.ramFrequency}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Tecnnología de la memoria ram</th>
-						<td>{{desktop.ramTechnology}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Disco duro</th>
-						<td>{{desktop.hardDisk}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Fabricante de el procesador</th>
-						<td>{{desktop.processorMaker}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Modelo de el procesador</th>
-						<td>{{desktop.processorModel}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Velocidad de el procesador</th>
-						<td>{{desktop.processorVelocity}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Núcleos de el procesador</th>
-						<td>{{desktop.processorCore}}</td>
-					</tr>
-					<tr>
-						<th scope="row">caché de el procesador</th>
-						<td>{{desktop.processorCache}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Fabricante de la gráfica</th>
-						<td>{{desktop.graphicMaker}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Modelo de la gráfica</th>
-						<td>{{desktop.graphicModel}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Tecnología de la gráfica</th>
-						<td>{{desktop.graphicTechnology}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Capacidad de la gráfica</th>
-						<td>{{desktop.graphicCapacity}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Interfaz gráfica</th>
-						<td>{{desktop.graphicInterface}}</td>
-					</tr>
-					<tr>
-						<th scope="row">USB 2.0</th>
-						<td>{{desktop.usb20}}</td>
-					</tr>
-					<tr>
-						<th scope="row">USB 3.0</th>
-						<td>{{desktop.usb30}}</td>
-					</tr>
-					<tr>
-						<th scope="row">HDMI</th>
-						<td>{{desktop.hdmi}}</td>
-					</tr>
-					<tr>
-						<th scope="row">DVI</th>
-						<td>{{desktop.dvi}}</td>
-					</tr>
-					<tr>
-						<th scope="row">BLUETOOTH</th>
-						<td>{{desktop.bluetooth}}</td>
-					</tr>
-					<tr>
-						<th scope="row">S.O.</th>
-						<td>{{desktop.os}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+    <div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+						<img class="card-img-top" src="{{ asset('images/Desktops/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
+						<div class="card-body">
+							<h5 class="card-title">{{ product.name }}</h5>
+							<p class="card-text">
+								Memoria Ram:{{ desktop.ramMemory}}</p>
+							<p class="card-text">
+								Procesador :<br>{{ desktop.processorModel}}</p>
+							<p class="card-text">
+								O.S:
+								{{ desktop.os}}</p>
+							<p class="card-text">Stock:
+								{{ product.stock}}</p>
+							<p class="card-text">Precio:
+								{{ product.price}}
+								$</p>
+							<a href=" {{ asset('/desktop/getProduct/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+						</div>
+					</div>
 {% endblock %}
