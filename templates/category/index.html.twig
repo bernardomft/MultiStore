@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    {% for category in categories %}
+        <div class="col-4 offset-1 mt-4 category-image row align-content-center justify-content-center" style="background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url('{{ asset('images/Categories/' ~ category.image ) }}')" >
+            <a class="h3 stretched-link" href="{{ asset('/listSubCategories/' ~  category.name  ) }}">{{ category.name }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}

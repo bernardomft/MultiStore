@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="col-12 navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="#">ICON_PLACE</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -7,7 +7,7 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-				<a class="nav-link" href="#">Home
+				<a class="nav-link" href="{{ asset('/') }}">Home
 					<span class="sr-only">(current)</span>
 				</a>
 			</li>
@@ -15,11 +15,11 @@
 				<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Productos
 				</a>
-				<ul
-					class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 					<!-- https://stackoverflow.com/questions/44467377/bootstrap-4-multilevel-dropdown-inside-navigation -->
+					<a class="dropdown-item" href="{{ asset('/category/all') }}">Ver todas las categorías</a>
 					<li class="dropdown-submenu">
+					
 						<a class="dropdown-item dropdown-toggle" href="#">Ordedanores</a>
 						<ul class="dropdown-menu">
 							<li>

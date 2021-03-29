@@ -124,6 +124,11 @@ class Desktop
      */
     private $idProduct;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $os;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -377,6 +382,18 @@ class Desktop
     public function setIdProduct(?Product $idProduct): self
     {
         $this->idProduct = $idProduct;
+
+        return $this;
+    }
+
+    public function getOs(): ?string
+    {
+        return $this->os;
+    }
+
+    public function setOs(string $os): self
+    {
+        $this->os = $os;
 
         return $this;
     }

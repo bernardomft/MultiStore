@@ -49,6 +49,11 @@ class Category
      */
     private $tablets;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -202,6 +207,18 @@ class Category
                 $tablet->setIdCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

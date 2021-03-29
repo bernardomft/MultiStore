@@ -19,3 +19,9 @@
   .index-image{
       background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url("../images/oficina.jpg");
   }
+
+  .category-image{
+    min-height: 20rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }

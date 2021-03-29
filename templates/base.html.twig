@@ -12,8 +12,10 @@
     </head>
     <body>
         <div class="container-fluid">
-            {% include 'commons/_header.html.twig' %}
-            {% block body %}{% endblock %}
+            <div class="row">
+                {% include 'commons/_header.html.twig' %}
+                {% block body %}{% endblock %}
+            </div>
         </div>
         
         {% block javascripts %}
