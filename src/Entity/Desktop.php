@@ -362,12 +362,12 @@ class Desktop
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 

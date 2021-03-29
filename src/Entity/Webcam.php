@@ -33,7 +33,7 @@ class Webcam
     private $connection;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="webcams")
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="webcams")
      */
     private $idSubcategory;
 
@@ -84,12 +84,12 @@ class Webcam
         return $this;
     }
 
-    public function getIdSubcategory(): ?Subcategory
+    public function getIdSubcategory(): ?SubCategory
     {
         return $this->idSubcategory;
     }
 
-    public function setIdSubcategory(?Subcategory $idSubcategory): self
+    public function setIdSubcategory(?SubCategory $idSubcategory): self
     {
         $this->idSubcategory = $idSubcategory;
 
