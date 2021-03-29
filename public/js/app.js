@@ -81,7 +81,7 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
       url: route.replace('fileid' , JSON.stringify([id,stock])),
       async: true,
       dataType: 'text',
-      data: JSON.stringify([id,stock]),
+      //data: JSON.stringify([id,stock]),
       success: function (data) {
           console.log(data);
       }

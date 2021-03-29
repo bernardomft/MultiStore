@@ -56,11 +56,12 @@ class ProductController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/getCartInfo/{str}", options={"expose"=true}, name="app_getCartInfo", methods={"GET","POST"})
+    /**
+     * @Route("/getCartInfo/{name}", name="app_getCartInfo")
      */
-    public function getCartInfo()
+    public function getCartInfo(string $name, CategoryRepository $categoryRepository): Response
     {
         
     }
+
 }
