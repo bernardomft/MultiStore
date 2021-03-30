@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Desktop;
 
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -57,10 +59,20 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/getCartInfo/{name}", name="app_getCartInfo")
+     * @Route("/getCartInfo", options={"expose"=true} ,name="app_getCartInfo", methods={"POST", "GET"})
      */
-    public function getCartInfo(string $name, CategoryRepository $categoryRepository): Response
+    public function getCartInfo(Request $request, ProductRepository $productRepository)
     {
+        if($request->isXmlHttpRequest()){
+            $content = json_decode($request->getContent());
+            $arrray_tmp = [];
+            foreach($content as $c){
+                $product = $productRepository->findOneBy(['id' => $c]);
+                $tmp = $product->getName() . '/' . $product->getPicture() . '/' . $product->getPrice();
+                array_push($arrray_tmp, $tmp);
+            }
+            return new Response(json_encode($arrray_tmp));
+        }
         
     }
 

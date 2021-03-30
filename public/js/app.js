@@ -75,13 +75,13 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
   }
 
   function getCartInfo(id,stock){
-    var route = "{{ asset('/getCartInfo/', { products: 'fileid' }) }}"
+    var route = Routing.generate('app_getCartInfo');
     $.ajax({
       type: 'POST',
-      url: route.replace('fileid' , JSON.stringify([id,stock])),
+      url: route,
       async: true,
-      dataType: 'text',
-      //data: JSON.stringify([id,stock]),
+      dataType: "json",
+      data: JSON.stringify(id),
       success: function (data) {
           console.log(data);
       }
