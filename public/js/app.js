@@ -15,9 +15,7 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
 });
 
 function addToCart(id) {
-  console.log('Añadir al carro ' + id);
   var select = $('#stockSelect')[0];
-  console.log(select);
   var stock = select.options[select.options.selectedIndex];
   var stock = stock.text;
   if (getCookie('cart') == "") {
@@ -54,7 +52,6 @@ function getCookie(cname) {
 function viewCart() {
   var cart = $('#cart')[0];
   var cookieCart = getCookie('cart');
-  console.log(cookieCart);
   if (cookieCart == "") {
     cart.setAttribute('data-content', 'No hay ningún artículo selecionado');
   } else {
@@ -67,8 +64,6 @@ function viewCart() {
       stock.push(tmp2[1]);
     });
     getCartInfo(id, stock);
-    console.log(id);
-    console.log(stock);
   }
 }
 
@@ -81,9 +76,7 @@ function getCartInfo(id, stock) {
     dataType: "json",
     data: JSON.stringify(id),
     success: function (data) {
-      console.log(data);
       var cart = $('#cart')[0];
-      //cart.popover({title: "<h1><strong>HTML</strong> inside <code>the</code> <em>popover</em></h1>", content: "Blabla <br> <h2>Cool stuff!</h2>", html: true, placement: "right"}); 
       cart.setAttribute('data-content', createCartView(data, stock));
     }
   });
@@ -97,7 +90,7 @@ function createCartView(data, stock) {
   data.forEach(d => {
     arrayTmp.push(d.split('/'));
   });
-  for (var i = 0; i <arrayTmp.length; i++) {
+  for (var i = 0; i < arrayTmp.length; i++) {
     var str = `<div class="col-12 row border-bottom mt-2 p-1">
       <div class="col-12">
         <p class="lead">` + arrayTmp[i][0] + `</p>
@@ -114,12 +107,11 @@ function createCartView(data, stock) {
   arrayEle.forEach(e => {
     tmp += e;
   });
-  tmp +=`<div class=col-12 row justify-content-around>
-            <div class="col-12 lead">TOTAL: `+ total +`$</div>
+  tmp += `<div class=col-12 row justify-content-around>
+            <div class="col-12 lead">TOTAL: ` + total + `$</div>
           </div>
           <a class="col-12 btn btn-primary" href="#">VER CARRO DE COMPRA</a>  
-  </arrayTmp.length;>`
-  console.log(tmp);
+  </>`
   return (tmp);
 }
 
@@ -128,6 +120,7 @@ function inicio() {
   $(function () {
     $('[data-toggle="popover"]').popover()
   })
+  viewCart();
 }
 
 window.onload = inicio;

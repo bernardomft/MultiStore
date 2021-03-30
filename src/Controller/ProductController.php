@@ -15,6 +15,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
+
+    /**
+     * @Route("/product/getProduct/{id}", name="app_getProduct")
+     */
+    public function getProduct(int $id, ProductRepository $productRepository): Response
+    {
+        $product = $productRepository->findOneBy(['id' => $id]);
+        $category = $product->getIdCategory();
+        if ($category->getName() != 'Smartphones' && $category->getName() != 'Tablets') {
+            if ($category->getName() == 'Ordenadores') {
+                $subcat = $category->getSubCategories();
+                if ($subcat[0]->getName() == 'PC/Sobremesa') {
+                    $desktop = $product->getDesktops();
+                    return $this->render('desktop/desktop.html.twig', [
+                        'product' => $product,
+                        'desktop' => $desktop[0]
+                    ]);
+                }
+            }
+        }
+        $desktop = $product->getDesktops();
+        return $this->render('desktop/desktop.html.twig', [
+            'product' => $product,
+            'desktop' => $desktop[0]
+        ]);
+    }
     /**
      * @Route("/listSubCategories/{name}", name="app_listSubCategories")
      */
@@ -29,27 +55,28 @@ class ProductController extends AbstractController
         switch ($name) {
             case 'Ordenadores';
                 $subcategories = $category->getSubCategories();
-                foreach($subcategories as $s){
-                    if($s->getName() === 'PC/Sobremesa'){
+                foreach ($subcategories as $s) {
+                    if ($s->getName() === 'PC/Sobremesa') {
                         $desktops = $s->getDesktops();
-                        foreach($desktops as $d){
+                        foreach ($desktops as $d) {
                             array_push($productsDesktops, $d->getIdProduct());
                         }
                     }
-                    if($s->getName() === 'Portátil'){
+                    if ($s->getName() === 'Portátil') {
                         $laptops = $s->getLaptops();
-                        foreach($laptops as $l){
+                        foreach ($laptops as $l) {
                             array_push($productsLaptops, $l->getIdProduct());
                         }
                     }
                 }
+                //HACER UN RETURN PERSONALIZADO PARA CADA SUBCATEGORÍA
                 return $this->render('product/ordenadores.html.twig', [
                     'productsDesktops' => $productsDesktops,
                     'desktops' => $desktops,
                     'laptops' => $laptops,
                     'productsLaptops' => $productsLaptops
                 ]);
-            break;
+                break;
         }
         return $this->render('product/index.html.twig', [
 
@@ -63,17 +90,15 @@ class ProductController extends AbstractController
      */
     public function getCartInfo(Request $request, ProductRepository $productRepository)
     {
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
             $content = json_decode($request->getContent());
             $arrray_tmp = [];
-            foreach($content as $c){
+            foreach ($content as $c) {
                 $product = $productRepository->findOneBy(['id' => $c]);
                 $tmp = $product->getName() . '/' . $product->getPicture() . '/' . $product->getPrice();
                 array_push($arrray_tmp, $tmp);
             }
             return new Response(json_encode($arrray_tmp));
         }
-        
     }
-
 }

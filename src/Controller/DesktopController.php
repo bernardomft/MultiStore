@@ -11,16 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DesktopController extends AbstractController
 {
-    /**
-     * @Route("/desktop/getProduct/{id}", name="app_getProduct")
-     */
-    public function getProduct(int $id, ProductRepository $productRepository): Response
-    {
-        $product = $productRepository->findOneBy(['id' => $id]);
-        $desktop = $product->getDesktops();
-        return $this->render('desktop/desktop.html.twig', [
-            'product' => $product,
-            'desktop' => $desktop[0]
-        ]);
-    }
+    
+
+    //MOVER LA FUNCION A PRODUCT CONBTROLLER. DISCRIMINAR AHI ENTRE LOS TIPOS DE SUBCATEGORIAS PARA COGER LA INFO 
 }
