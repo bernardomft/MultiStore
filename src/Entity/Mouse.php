@@ -43,7 +43,7 @@ class Mouse
     private $frequency;
 
     /**
-     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="Mouse")
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="mouse")
      * @ORM\JoinColumn(nullable=false)
      */
     private $idSubcategory;

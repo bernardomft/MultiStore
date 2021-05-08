@@ -4,30 +4,8 @@
 {% endblock %}
 
 {% block body %}
-<h2 class="h2 col-12 text-center mt-3">Ordenadores</h2>
+<h2 class="h2 col-12 text-center mt-3">Portátiles</h2>
 		<div class="container-fluid col-10 mt-3 row justify-content-around">
-			{% for j, product in productsDesktops %}
-					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
-						<img class="card-img-top" src="{{ asset('images/Desktops/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
-						<div class="card-body">
-							<h5 class="card-title">{{ product.name }}</h5>
-							<p class="card-text">
-								Memoria Ram:{{ desktops[j].ramMemory}}</p>
-							<p class="card-text">
-								Procesador :<br>{{ desktops[j].processorModel}}</p>
-							<p class="card-text">
-								O.S:
-								{{ desktops[j].os}}</p>
-							<p class="card-text">Stock:
-								{{ product.stock}}</p>
-							<p class="card-text">Precio:
-								{{ product.price}}
-								$</p>
-							<a href=" {{ asset('/product/getProduct/PCSobremesa/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
-						</div>
-					</div>
-			{% endfor %}
-
 			{% for j, product in productsLaptops %}
 					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
 						<img class="card-img-top" src="{{ asset('images/Laptops/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>

@@ -17,23 +17,38 @@ class ProductController extends AbstractController
 {
 
     /**
-     * @Route("/product/getProduct/{id}", name="app_getProduct")
+     * @Route("/product/getProduct/{subcat}/{id}", name="app_getProduct")
      */
-    public function getProduct(int $id, ProductRepository $productRepository): Response
+    public function getProduct(string $subcat, int $id, ProductRepository $productRepository): Response
     {
         $product = $productRepository->findOneBy(['id' => $id]);
         $category = $product->getIdCategory();
-        if ($category->getName() != 'Smartphones' && $category->getName() != 'Tablets') {
-            if ($category->getName() == 'Ordenadores') {
-                $subcat = $category->getSubCategories();
-                if ($subcat[0]->getName() == 'PC/Sobremesa') {
-                    $desktop = $product->getDesktops();
-                    return $this->render('desktop/desktop.html.twig', [
-                        'product' => $product,
-                        'desktop' => $desktop[0]
-                    ]);
-                }
-            }
+        if($subcat == 'PCSobremesa'){
+            $desktop = $product->getDesktops();
+            return $this->render('desktop/desktop.html.twig', [
+            'product' => $product,
+            'desktop' => $desktop[0]
+            ]);
+        }else if($subcat == 'Portatil'){
+            $laptop = $product->getLaptops();
+            return $this->render('laptop/laptop.html.twig', [
+            'product' => $product,
+            'laptop' => $laptop[0]
+            ]);
+        }
+        else if($subcat == 'Teclado'){
+            $keyboard = $product->getkeyboards();
+            return $this->render('keyboard/keyboard.html.twig', [
+            'product' => $product,
+            'keyboard' => $keyboard[0]
+            ]);
+        }
+        else if($subcat == 'Raton'){
+            $mouse = $product->getMouse();
+            return $this->render('mouse/mouse.html.twig', [
+            'product' => $product,
+            'mouse' => $mouse[0]
+            ]);
         }
         $desktop = $product->getDesktops();
         return $this->render('desktop/desktop.html.twig', [
@@ -42,9 +57,9 @@ class ProductController extends AbstractController
         ]);
     }
     /**
-     * @Route("/listSubCategories/{name}", name="app_listSubCategories")
+     * @Route("/listCategories/{name}", name="app_listCategories")
      */
-    public function listSubCategories(string $name, CategoryRepository $categoryRepository): Response
+    public function listCategories(string $name, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->findOneBy(['name' => $name]);
         $productsDesktops = [];
@@ -62,7 +77,7 @@ class ProductController extends AbstractController
                             array_push($productsDesktops, $d->getIdProduct());
                         }
                     }
-                    if ($s->getName() === 'Portátil') {
+                    if ($s->getName() === 'Portatil') {
                         $laptops = $s->getLaptops();
                         foreach ($laptops as $l) {
                             array_push($productsLaptops, $l->getIdProduct());
@@ -76,7 +91,7 @@ class ProductController extends AbstractController
                     'laptops' => $laptops,
                     'productsLaptops' => $productsLaptops
                 ]);
-                break;
+            break;
         }
         return $this->render('product/index.html.twig', [
 

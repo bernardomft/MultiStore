@@ -51,7 +51,7 @@ class LaptopFixtures extends Fixture implements DependentFixtureInterface
             $laptop->setUsb20(0);
             $laptop->setUsb30(0);
             $laptop->setHdmi(0);
-            //$laptop->setOs('Macintosh Catalina');
+            $laptop->setOs('Macintosh Catalina');
             $laptop->setScreenResolution("2560x1600px");
             $laptop->setIdSubcategory($this->getReference(SubCategoryFixtures::COMPUTERS[1]));
             $laptop->setIdProduct($this->getReference('Ordenador_portatil_'. $i));

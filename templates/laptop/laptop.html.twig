@@ -1,0 +1,174 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello laptopController!
+{% endblock %}
+
+{% block body %}
+	<div class="col-12 row justify-content-around mt-5">
+		<div class="col-4">
+			<img class="" src="{{ asset('images/Laptops/' ~ product.picture ) }}" alt="Card image cap" width"500px" height="500px"/>
+		</div>
+
+		<div class="col-6 row align-content-start">
+			<h1 class="h2 col-12">
+				{{product.name}}
+			</h1>
+			<h4 class="h4 offset-1 col-11 mt-4 lead">
+				Fabricante:
+				{{product.mark}}
+			</h4>
+			<h4 class="h4 offset-1 col-11 mt-4 lead">
+				Modelo:
+				{{product.model}}
+			</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Memoria RAM:
+				{{laptop.ramMemory}}
+				{{laptop.ramTechology}}</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Procesador:
+				{{laptop.processorMaker}}
+				{{laptop.processorModel}}</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Tarjeta gráfica:
+				{{laptop.graphicMaker}}
+				{{laptop.graphicModel}}
+				{{laptop.graphicCapacity}}</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				S.O.:
+				{{laptop.os}}</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Precio:
+				{{product.price}}
+				$</h4>
+			<select id="stockSelect"class="offset-1 col-4 mt-4 lead form-select" aria-label="Default select example">
+				<option selected>1</option>
+                {% for i in 2..product.stock %}
+                    <option value="1">{{ i }}</option>
+                {% endfor %}
+			</select>
+			<a href="#" onclick='addToCart({{ product.id }})' class=" offset-1 col-6 mt-4 lead btn btn-primary">
+				Añadir al carrito
+			</a>
+		</div>
+		<div class="col-6 mt-3 row">
+			<h2 class="h2 col-12">
+				Descripciónn</h2>
+			<p class="p col-12 leaf text-align-justify">
+				{{product.description}}
+			</p>
+			<table class="mt-4 col-12 table">
+				<tbody>
+					<tr>
+						<th scope="row">Fabricante</th>
+						<td>{{product.maker}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Nombre</th>
+						<td>{{product.name}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Modelo</th>
+						<td>{{product.model}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Segunda Mano</th>
+						<td>{{product.secondHand}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Dimensiones</th>
+						<td>{{product.dimensions}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Peso</th>
+						<td>{{product.weight}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Año</th>
+						<td>{{product.year}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Capacidad de la memoria ram</th>
+						<td>{{laptop.ramMemory}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Frequencia de la memoria ram</th>
+						<td>{{laptop.ramFrequency}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Tecnnología de la memoria ram</th>
+						<td>{{laptop.ramTechology}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Disco duro</th>
+						<td>{{laptop.hardDisk}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Fabricante de el procesador</th>
+						<td>{{laptop.processorMaker}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Modelo de el procesador</th>
+						<td>{{laptop.processorModel}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Velocidad de el procesador</th>
+						<td>{{laptop.processorVelocity}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Núcleos de el procesador</th>
+						<td>{{laptop.processorCore}}</td>
+					</tr>
+					<tr>
+						<th scope="row">caché de el procesador</th>
+						<td>{{laptop.processorCache}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Fabricante de la gráfica</th>
+						<td>{{laptop.graphicMaker}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Modelo de la gráfica</th>
+						<td>{{laptop.graphicModel}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Tecnología de la gráfica</th>
+						<td>{{laptop.graphicTechnology}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Capacidad de la gráfica</th>
+						<td>{{laptop.graphicCapacity}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Interfaz gráfica</th>
+						<td>{{laptop.graphicInterface}}</td>
+					</tr>
+					<tr>
+						<th scope="row">USB 2.0</th>
+						<td>{{laptop.usb20}}</td>
+					</tr>
+					<tr>
+						<th scope="row">USB 3.0</th>
+						<td>{{laptop.usb30}}</td>
+					</tr>
+					<tr>
+						<th scope="row">HDMI</th>
+						<td>{{laptop.hdmi}}</td>
+					</tr>
+					<tr>
+						<th scope="row">DVI</th>
+						<td>{{laptop.dvi}}</td>
+					</tr>
+					<tr>
+						<th scope="row">BLUETOOTH</th>
+						<td>{{laptop.bluetooht}}</td>
+					</tr>
+					<tr>
+						<th scope="row">S.O.</th>
+						<td>{{laptop.os}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

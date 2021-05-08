@@ -11,7 +11,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
 {
     public const COMPUTERS = ['PC/Sobremesa' ,'Portatil'];
-    public const PERIFERICS = ['Teclado' ,'Ratón', 'Pantalla'];
+    public const PERIFERICS = ['Teclado' ,'Raton', 'Pantalla'];
     public const COMPONENTS = ['Disco duro' ,'Caja', 'Placa base', 'Procesador', 'Tarjeta gráfica' , 'Fuente de alimentación' , 'Refrigeración'];
     public const ACEESORIES = ['Funda' ,'Cargador', 'Auriculares'];
     public const GADGETS = ['Smartwatch' ,'Webcam'];
@@ -32,7 +32,7 @@ class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
             $subCategory = new SubCategory();
             $subCategory->setName($p);
             $subCategory->setDescription('Descripcion de ' . $p);
-            $subCategory->setIdCategory($this->getReference('Periféricos'));
+            $subCategory->setIdCategory($this->getReference('Perifericos'));
             $manager->persist($subCategory);
             $manager->flush();
             $this->addReference($p, $subCategory);

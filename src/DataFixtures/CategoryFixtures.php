@@ -6,10 +6,11 @@ use App\Entity\Category;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class CategoryFixtures extends Fixture
 {
-    public const NAMES = ['Ordenadores', 'Periféricos', 'Componentes', 'Smartphones', 'Tablets', 'Accesorios',
+    public const NAMES = ['Ordenadores', 'Perifericos', 'Componentes', 'Smartphones', 'Tablets', 'Accesorios',
                             'Gadgets'];
     public const IMAGES = ['desktops.png' , 'periferics.jpg', 'components.jpg',
                         'smartphones.jpg','tablets.jpg' , 'accesories.webp', 'gadgets.jpg'];

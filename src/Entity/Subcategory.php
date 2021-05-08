@@ -48,7 +48,7 @@ class SubCategory
     /**
      * @ORM\OneToMany(targetEntity=Mouse::class, mappedBy="idSubcategory")
      */
-    private $Mouse;
+    private $mouse;
 
     /**
      * @ORM\OneToMany(targetEntity=Keyboard::class, mappedBy="idSubcategory")
@@ -129,7 +129,7 @@ class SubCategory
     {
         $this->desktops = new ArrayCollection();
         $this->laptops = new ArrayCollection();
-        $this->Mouse = new ArrayCollection();
+        $this->mouse = new ArrayCollection();
         $this->keyboards = new ArrayCollection();
         $this->screens = new ArrayCollection();
         $this->headphones = new ArrayCollection();
@@ -249,11 +249,11 @@ class SubCategory
     }
 
     /**
-     * @return Collection|Mouse[]
+     * @return Collection|mouse[]
      */
     public function getMouse(): Collection
     {
-        return $this->Mouse;
+        return $this->mouse;
     }
 
     public function addMouse(Mouse $mouse): self

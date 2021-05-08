@@ -92,16 +92,53 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             $this->addReference('Ordenador_portatil_'. $i, $product);
         }
+        //teclados
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("Logitech G915 LIGHTSPEED");
+            $product->setModel("G915 LIGHTSPEED");
+            $product->setMark("Logitech");
+            $product->setMaker("Logitech");
+            $product->setStock($i + 1);
+            $product->setDescription("PENTAKILLL!!!!!!");
+            $product->setPicture('Logitech_G915_LIGHTSPEED.jpg');
+            $product->setPrice(194.99);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Perifericos'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Periferico_Teclado_'. $i, $product);
+        }
+        //ratones
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("HP X500");
+            $product->setModel("X500");
+            $product->setMark("HP");
+            $product->setMaker("HP");
+            $product->setStock($i + 1);
+            $product->setDescription("PENTAKILLL!!!!!!");
+            $product->setPicture('HP_X500.jpg');
+            $product->setPrice(8.99);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Perifericos'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Periferico_Raton_'. $i, $product);
+        }
     }
 
-    
 
 
     public function getDependencies()
     {
         return [
             StoreFixture::class,
-            CategoryFixtures::class
+            CategoryFixtures::class,
         ];
     }
 }
