@@ -73,7 +73,29 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             $this->addReference('Ordenador_sobremesa_2_'. $i, $product);
         }
+        //Ordenadores portátiles
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("Apple MacBook Pro 13\"");
+            $product->setModel("MacBook Pro 13\"");
+            $product->setMark("Apple");
+            $product->setMaker("Apple");
+            $product->setStock($i + 1);
+            $product->setDescription("Ordenador Apple. Muy caro para lo que es");
+            $product->setPicture('MackBookPro13.jpg');
+            $product->setPrice(1449.00);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Ordenadores'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Ordenador_portatil_'. $i, $product);
+        }
     }
+
+    
+
 
     public function getDependencies()
     {

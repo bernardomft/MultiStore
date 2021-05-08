@@ -10,7 +10,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const COMPUTERS = ['PC/Sobremesa' ,'Portátil'];
+    public const COMPUTERS = ['PC/Sobremesa' ,'Portatil'];
     public const PERIFERICS = ['Teclado' ,'Ratón', 'Pantalla'];
     public const COMPONENTS = ['Disco duro' ,'Caja', 'Placa base', 'Procesador', 'Tarjeta gráfica' , 'Fuente de alimentación' , 'Refrigeración'];
     public const ACEESORIES = ['Funda' ,'Cargador', 'Auriculares'];
