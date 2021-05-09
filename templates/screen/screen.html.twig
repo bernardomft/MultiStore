@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello laptopController!
+{% endblock %}
+
+{% block body %}
+	<div class="col-12 row justify-content-around mt-5">
+		<div class="col-4">
+			<img class="" src="{{ asset('images/Screens/' ~ product.picture ) }}" alt="Card image cap" width"500px" height="500px"/>
+		</div>
+
+		<div class="col-6 row align-content-start">
+			<h1 class="h2 col-12">
+				{{product.name}}
+			</h1>
+			<h4 class="h4 offset-1 col-11 mt-4 lead">
+				Fabricante:
+				{{product.mark}}
+			</h4>
+			<h4 class="h4 offset-1 col-11 mt-4 lead">
+				Modelo:
+				{{product.model}}
+			</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Calidad de imagen:
+				{{screen.resolution}}
+			</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Resolución:
+				{{screen.resolutionPx}}</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Conector:
+				{{ screen.connectors}}</h4>
+			<h4 class=" offset-1 col-11 mt-4 lead">
+				Precio:
+				{{product.price}}
+				$</h4>
+			<select id="stockSelect"class="offset-1 col-4 mt-4 lead form-select" aria-label="Default select example">
+				<option selected>1</option>
+                {% for i in 2..product.stock %}
+                    <option value="1">{{ i }}</option>
+                {% endfor %}
+			</select>
+			<a href="#" onclick='addToCart({{ product.id }})' class=" offset-1 col-6 mt-4 lead btn btn-primary">
+				Añadir al carrito
+			</a>
+		</div>
+		<div class="col-6 mt-3 row">
+			<h2 class="h2 col-12">
+				Descripciónn</h2>
+			<p class="p col-12 leaf text-align-justify">
+				{{product.description}}
+			</p>
+			<table class="mt-4 col-12 table">
+				<tbody>
+					<tr>
+						<th scope="row">Fabricante</th>
+						<td>{{product.maker}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Nombre</th>
+						<td>{{product.name}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Modelo</th>
+						<td>{{product.model}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Segunda Mano</th>
+						<td>{{product.secondHand}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Dimensiones</th>
+						<td>{{product.dimensions}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Peso</th>
+						<td>{{product.weight}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Año</th>
+						<td>{{product.year}}</td>
+						<tr>
+					<th scope="row">Calidad de imagen:</th>
+						<td>{{screen.resolution}}</td>
+					</tr>
+					</tr>
+					<tr>
+						<th scope="row">Resolución:</th>
+						<td>{{screen.resolutionPx}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Frequencia:</th>
+						<td>{{screen.frequency}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Tiempo de respuesta:</th>
+						<td>{{screen.responseTime}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Brillo:</th>
+						<td>{{screen.shine}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Disposisción de pantalla:</th>
+						<td>{{screen.view}}</td>
+					</tr>
+					<tr>
+						<th scope="row">Conectores:</th>
+						<td>{{screen.connectors}}</td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

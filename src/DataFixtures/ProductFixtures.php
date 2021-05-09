@@ -111,6 +111,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             $this->addReference('Periferico_Teclado_'. $i, $product);
         }
+
         //ratones
         for($i=0;$i<10;$i++){
             $product = new Product();
@@ -129,6 +130,25 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($product);
             $manager->flush();
             $this->addReference('Periferico_Raton_'. $i, $product);
+        }
+         //pantallas
+         for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("Samsung C27F390");
+            $product->setModel("C27F390");
+            $product->setMark("Samsung");
+            $product->setMaker("Samsung");
+            $product->setStock($i + 1);
+            $product->setDescription("Monitor curvo gamming");
+            $product->setPicture('Samsung _C27F390.webp');
+            $product->setPrice(149.00);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Perifericos'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Periferico_Pantalla_'. $i, $product);
         }
     }
 

@@ -49,6 +49,12 @@ class ProductController extends AbstractController
             'product' => $product,
             'mouse' => $mouse[0]
             ]);
+        }else if($subcat == 'Pantalla'){
+            $screen = $product->getScreens();
+            return $this->render('screen/screen.html.twig', [
+            'product' => $product,
+            'screen' => $screen[0]
+            ]);
         }
         $desktop = $product->getDesktops();
         return $this->render('desktop/desktop.html.twig', [
@@ -64,8 +70,14 @@ class ProductController extends AbstractController
         $category = $categoryRepository->findOneBy(['name' => $name]);
         $productsDesktops = [];
         $productsLaptops = [];
+        $productsKeyboards = [];
+        $productsMouses = [];
+        $productsScreens = [];
         $desktops = null;
         $laptops = null;
+        $keyboards = null;
+        $mouses = null;
+        $screens = null;
 
         switch ($name) {
             case 'Ordenadores';
@@ -90,6 +102,38 @@ class ProductController extends AbstractController
                     'desktops' => $desktops,
                     'laptops' => $laptops,
                     'productsLaptops' => $productsLaptops
+                ]);
+            break;
+            case 'Perifericos';
+                $subcategories = $category->getSubCategories();
+                foreach ($subcategories as $s) {
+                    if ($s->getName() === 'Teclado') {
+                        $keyboards = $s->getKeyboards();
+                        foreach ($keyboards as $k) {
+                            array_push($productsKeyboards, $k->getIdProduct());
+                        }
+                    }
+                    if ($s->getName() === 'Raton') {
+                        $mouses = $s->getMouse();
+                        foreach ($mouses as $l) {
+                            array_push($productsMouses, $l->getIdProduct());
+                        }
+                    }
+                    if ($s->getName() === 'Pantalla') {
+                        $screens = $s->getScreens();
+                        foreach ($screens as $s) {
+                            array_push($productsScreens, $s->getIdProduct());
+                        }
+                    }
+                }
+                //HACER UN RETURN PERSONALIZADO PARA CADA SUBCATEGORÍA
+                return $this->render('product/perifericos.html.twig', [
+                    'productsKeyboards' => $productsKeyboards,
+                    'productsMouses' => $productsMouses,
+                    'productsScreens' => $productsScreens,
+                    'keyboards' => $keyboards,
+                    'mouses' => $mouses,
+                    'screens' => $screens
                 ]);
             break;
         }
