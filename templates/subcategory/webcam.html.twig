@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!
+{% endblock %}
+
+{% block body %}
+<h2 class="h2 col-12 text-center mt-3">Webcams</h2>
+		<div class="container-fluid col-10 mt-3 row justify-content-around">
+			{% for j, product in productWebcam %}
+					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+						<img class="card-img-top" src="{{ asset('images/Webcams/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
+						<div class="card-body">
+							<h5 class="card-title">{{ product.name }}</h5>
+							<p class="card-text">
+								Resolución:{{ webcams[j].resolutionPx}}</p>
+							<p class="card-text">
+								Sonido:<br>{{ webcams[j].sound}}</p>
+							<p class="card-text">
+								Conexión:
+								{{ webcams[j].connection}}</p>
+							<p class="card-text">Stock:
+								{{ product.stock}}</p>
+							<p class="card-text">Precio:
+								{{ product.price}}
+								$</p>
+							<a href=" {{ asset('/product/getProduct/Webcam/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+						</div>
+					</div>
+			{% endfor %}
+		</div>
+{% endblock %}

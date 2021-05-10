@@ -55,7 +55,22 @@ class ProductController extends AbstractController
             'product' => $product,
             'screen' => $screen[0]
             ]);
+        }else if($subcat == 'Smartwatch'){
+            $smartwatch = $product->getSmartWatches();
+            return $this->render('smartwatch/smartwatch.html.twig', [
+            'product' => $product,
+            'smartwatch' => $smartwatch[0]
+            ]);
         }
+        else if($subcat == 'Webcam'){
+            $webcam = $product->getWebcams();
+            return $this->render('webcam/webcam.html.twig', [
+            'product' => $product,
+            'webcam' => $webcam[0]
+            ]);
+        }
+
+        ////////
         $desktop = $product->getDesktops();
         return $this->render('desktop/desktop.html.twig', [
             'product' => $product,
@@ -73,11 +88,15 @@ class ProductController extends AbstractController
         $productsKeyboards = [];
         $productsMouses = [];
         $productsScreens = [];
+        $productSmartwatch = [];
+        $productsWebcam = [];
         $desktops = null;
         $laptops = null;
         $keyboards = null;
         $mouses = null;
         $screens = null;
+        $smartwatchs = null;
+        $webcams = null;
 
         switch ($name) {
             case 'Ordenadores';
@@ -134,6 +153,30 @@ class ProductController extends AbstractController
                     'keyboards' => $keyboards,
                     'mouses' => $mouses,
                     'screens' => $screens
+                ]);
+            break;
+            case 'Gadgets';
+                $subcategories = $category->getSubCategories();
+                foreach ($subcategories as $s) {
+                    if ($s->getName() === 'Smartwatch') {
+                        $smartwatchs = $s->getSmartwatches();
+                        foreach ($smartwatchs as $k) {
+                            array_push($productSmartwatch, $k->getIdProduct());
+                        }
+                    }
+                    if ($s->getName() === 'Webcam') {
+                        $webcams = $s->getWebcams();
+                        foreach ($webcams as $l) {
+                            array_push($productsWebcam, $l->getIdProduct());
+                        }
+                    }
+                }
+                //HACER UN RETURN PERSONALIZADO PARA CADA SUBCATEGORÍA
+                return $this->render('product/gadgets.html.twig', [
+                    'productSmartwatch' => $productSmartwatch,
+                    'productsWebcam' => $productsWebcam,
+                    'smartwatchs' => $smartwatchs,
+                    'webcams' => $webcams
                 ]);
             break;
         }

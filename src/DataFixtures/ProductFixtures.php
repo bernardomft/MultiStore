@@ -150,6 +150,44 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             $this->addReference('Periferico_Pantalla_'. $i, $product);
         }
+        //Smartwatchs
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("Apple Watch SE");
+            $product->setModel("SE");
+            $product->setMark("Apple");
+            $product->setMaker("Apple");
+            $product->setStock($i + 1);
+            $product->setDescription("reloj manzana");
+            $product->setPicture('Apple_Watch_SE.jpg');
+            $product->setPrice(359.00);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Gadgets'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Gadget_Smartwatch_'. $i, $product);
+        }
+        //Webcams
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("Logitech C920s HD Pro");
+            $product->setModel("C920s HD Pro");
+            $product->setMark("Logitech");
+            $product->setMaker("Logitech");
+            $product->setStock($i + 1);
+            $product->setDescription("Webcam HD");
+            $product->setPicture('Logitech_C920s-HD_Pro.jpg');
+            $product->setPrice(86.61);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Gadgets'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Gadget_Webcam_'. $i, $product);
+        }
     }
 
 
