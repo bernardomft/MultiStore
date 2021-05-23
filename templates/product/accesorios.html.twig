@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!
+{% endblock %}
+
+{% block body %}
+<h2 class="h2 col-12 text-center mt-3">Accesorios</h2>
+		<div class="container-fluid col-10 mt-3 row justify-content-around">
+			{% for j, product in productHeadphones %}
+					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+						<img class="card-img-top" src="{{ asset('images/Earphones/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
+						<div class="card-body">
+							<h5 class="card-title">{{ product.name }}</h5>
+							<p class="card-text">
+								Dispositivo:{{ headphones[j].type}}</p>
+							<p class="card-text">
+								Color<br>{{ headphones[j].connection}}</p>
+							<p class="card-text">Stock:
+								{{ product.stock}}</p>
+							<p class="card-text">Precio:
+								{{ product.price}}
+								$</p>
+							<a href=" {{ asset('/product/getProduct/Auriculares/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+						</div>
+					</div>
+			{% endfor %}
+
+			{% for j, product in productChargers %}
+					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+						<img class="card-img-top" src="{{ asset('images/Chargers/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
+						<div class="card-body">
+							<h5 class="card-title">{{ product.name }}</h5>
+							<p class="card-text">
+								Conexión:{{ chargers[j].connection}}</p>
+							<p class="card-text">
+								Amperaje: <br>{{ chargers[j].amperage}}</p>
+							<p class="card-text">Stock:
+								{{ product.stock}}</p>
+							<p class="card-text">Precio:
+								{{ product.price}}
+								$</p>
+							<a href=" {{ asset('/product/getProduct/Cargador/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+						</div>
+					</div>
+			{% endfor %}
+
+			{% for j, product in productCases %}
+					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+						<img class="card-img-top" src="{{ asset('images/DeviceCases/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
+						<div class="card-body">
+							<h5 class="card-title">{{ product.name }}</h5>
+							<p class="card-text">
+								Dispositivo:{{ cases[j].device}}</p>
+							<p class="card-text">
+								Color<br>{{ cases[j].color}}</p>
+							<p class="card-text">Stock:
+								{{ product.stock}}</p>
+							<p class="card-text">Precio:
+								{{ product.price}}
+								$</p>
+							<a href=" {{ asset('/product/getProduct/Funda/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+						</div>
+					</div>
+			{% endfor %}
+		</div>
+{% endblock %}

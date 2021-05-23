@@ -1,4 +1,4 @@
-<nav class="col-12 navbar navbar-expand-lg navbar-light bg-light">
+<nav class="col-12 display-xs-1 display-lg-1 navbar navbar-expand-lg navbar-light bg-light sticky-top" id="barraNavegacion">
 	<a class="navbar-brand" href="#">ICON_PLACE</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -101,13 +101,13 @@
 						<a class="dropdown-item dropdown-toggle" href="#">Accesorios</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a class="dropdown-item" href="#">Funda</a>
+								<a class="dropdown-item" href="{{ asset('/listSubCategories/Funda')}}">Funda</a>
 							</li>
 							<li>
-								<a class="dropdown-item" href="#">Cargador</a>
+								<a class="dropdown-item" href="{{ asset('/listSubCategories/Cargador')}}">Cargador</a>
 							</li>
 							<li>
-								<a class="dropdown-item" href="#">Auriculares</a>
+								<a class="dropdown-item" href="{{ asset('/listSubCategories/Auriculares')}}">Auriculares</a>
 							</li>
 						</ul>
 					</li>
@@ -141,8 +141,8 @@
 		</ul>
 		<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 			<div class="btn-group mr-2" role="group" aria-label="First group">
-				<a>
-					<button type="button" class="btn btn-secondary">Log In</button>
+				<a class="">
+					<button type="button" class=" btn btn-secondary">Log In</button>
 				</a>
 			</div>
 			<div class="btn-group mr-2" role="group" aria-label="Second group">
@@ -153,7 +153,7 @@
 			<div class="btn-group" role="group" aria-label="Third group">
 				<a>
 					<button id="cart" type="button" onclick="viewCart()" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true"  data-content="Vivamus">
-						<img src="{{ asset('images/carro-de-la-compra.png') }}" width="25px"/>
+						<img class="img-cart" src="{{ asset('images/carro-de-la-compra.png') }}" width="25px"/>
 					</button>
 				</a>
 			</div>

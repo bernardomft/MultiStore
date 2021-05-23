@@ -188,6 +188,65 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             $this->addReference('Gadget_Webcam_'. $i, $product);
         }
+        //fundas
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("Apple Funda Transparente");
+            $product->setModel("Apple Funda Transparente");
+            $product->setMark("Apple");
+            $product->setMaker("Apple");
+            $product->setStock($i + 1);
+            $product->setDescription("Funda iphone 12 Pro Max");
+            $product->setPicture('fundaApple.jpg');
+            $product->setPrice(54.99);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Accesorios'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Accesorio_Funda_'. $i, $product);
+        }
+
+        //Cargadores
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("UGREEN Cargador Quick Charge 3.0");
+            $product->setModel("UGREEN Cargador Quick Charge 3.0");
+            $product->setMark("UGREEN");
+            $product->setMaker("UGREEN");
+            $product->setStock($i + 1);
+            $product->setDescription("Funda iphone 12 Pro Max");
+            $product->setPicture('cargador.jpg');
+            $product->setPrice(54.99);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Accesorios'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Accesorio_Cargador_'. $i, $product);
+        }
+
+        //Auriculares
+        for($i=0;$i<10;$i++){
+            $product = new Product();
+            $product->setName("Apple EarPods con conector Lightning");
+            $product->setModel("Apple EarPods con conector Lightning");
+            $product->setMark("Apple");
+            $product->setMaker("Apple");
+            $product->setStock($i + 1);
+            $product->setDescription("cascos iphone");
+            $product->setPicture('earpods.jpg');
+            $product->setPrice(15.99);
+            $product->setDisscount(0);
+            $product->setSecondHand(false);
+            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setIdCategory($this->getReference('Accesorios'));
+            $manager->persist($product);
+            $manager->flush();
+            $this->addReference('Accesorio_Auriculares_'. $i, $product);
+        }
     }
 
 

@@ -5,14 +5,14 @@
 
 {% block body %}
 <h2 class="h2 col-12 text-center mt-3">Ordenadores</h2>
-		<div class="container-fluid col-10 mt-3 row justify-content-around">
+		<div class="container-fluid col-10 mt-3 row justify-lg-content-around justify-xs-content-center ">
 			{% for j, product in productsDesktops %}
-					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
-						<img class="card-img-top" src="{{ asset('images/Desktops/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
+					<div class="col-xs-12 col-lg-3 offset-lg-1 card p-3 mt-5" style="">
+						<img class="card-img-top" src="{{ asset('images/Desktops/' ~ product.picture ) }}" alt="Card image cap" width="250px" height="250px"/>
 						<div class="card-body">
 							<h5 class="card-title">{{ product.name }}</h5>
 							<p class="card-text">
-								Memoria Ram:{{ desktops[j].ramMemory}}</p>
+								Memoria Ram: {{ desktops[j].ramMemory}}</p>
 							<p class="card-text">
 								Procesador :<br>{{ desktops[j].processorModel}}</p>
 							<p class="card-text">
@@ -23,18 +23,18 @@
 							<p class="card-text">Precio:
 								{{ product.price}}
 								$</p>
-							<a href=" {{ asset('/product/getProduct/PCSobremesa/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+							<a href=" {{ asset('/product/getProduct/PCSobremesa/' ~ product.id ) }} " class="btn btn-primary btn-card">Ver producto</a>
 						</div>
 					</div>
 			{% endfor %}
 
 			{% for j, product in productsLaptops %}
-					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+					<div class=" col-xs-12 col-lg-3 offset-lg-1 card p-3 mt-5" style="">
 						<img class="card-img-top" src="{{ asset('images/Laptops/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
 						<div class="card-body">
 							<h5 class="card-title">{{ product.name }}</h5>
 							<p class="card-text">
-								Memoria Ram:{{ laptops[j].ramMemory}}</p>
+								Memoria Ram: {{ laptops[j].ramMemory}}</p>
 							<p class="card-text">
 								Procesador :<br>{{ laptops[j].processorModel}}</p>
 							<p class="card-text">
@@ -45,7 +45,7 @@
 							<p class="card-text">Precio:
 								{{ product.price}}
 								$</p>
-							<a href=" {{ asset('/product/getProduct/Portatil/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+							<a href=" {{ asset('/product/getProduct/Portatil/' ~ product.id ) }} " class="btn btn-primary btn-card">Ver producto</a>
 						</div>
 					</div>
 			{% endfor %}

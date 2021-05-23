@@ -1,3 +1,8 @@
+/*nav{
+  font-size: 4em;
+}*/
+
+
 .dropdown-submenu {
     position: relative;
   }
@@ -25,3 +30,54 @@
     background-repeat: no-repeat;
     background-size: contain;
   }
+  
+
+
+  @media screen and (max-width: 997.8px) {
+    
+   body{
+     font-size: 3em;
+   }
+    h2.h2, a.h3{
+      font-size: 1.5em;
+    }
+    h4.h4, select.forml-select{
+      font-size: 1.2em;
+    }
+    h5.h5{
+      font-size: 1.1em;
+    }
+    h5.card-title, a.btn.btn-card{
+      font-size: 2em;
+    }
+    a.btn.btn-primary{
+      font-size: 1em;
+    }
+    a.dropdown-item{
+      font-size: 3em;
+    }
+    button.btn.btn-secondary{
+      font-size: 1.5em;
+    }
+    img.img-cart{
+      width: 1em;
+    }
+    img.card-img-top{
+      height: 500px;
+    }
+  }
+
+  @media screen and (min-width: 998px) {
+    
+    body{
+      font-size: 1.2em;
+    }
+     h2.h2{
+       font-size: 1.8em;
+     }
+     
+     h5.card-title, a.btn.btn-card{
+       font-size: 2em;
+     }
+   }
+  

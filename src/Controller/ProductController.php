@@ -69,6 +69,27 @@ class ProductController extends AbstractController
             'webcam' => $webcam[0]
             ]);
         }
+        else if($subcat == 'Funda'){
+            $case = $product->getDeviceCases();
+            return $this->render('case/case.html.twig', [
+            'product' => $product,
+            'case' => $case[0]
+            ]);
+        }
+        else if($subcat == 'Cargador'){
+            $charger = $product->getChargers();
+            return $this->render('charger/charger.html.twig', [
+            'product' => $product,
+            'charger' => $charger[0]
+            ]);
+        }
+        else if($subcat == 'Auriculares'){
+            $headphone = $product->getHeadphones();
+            return $this->render('headphone/headphone.html.twig', [
+            'product' => $product,
+            'headphone' => $headphone[0]
+            ]);
+        }
 
         ////////
         $desktop = $product->getDesktops();
@@ -90,6 +111,9 @@ class ProductController extends AbstractController
         $productsScreens = [];
         $productSmartwatch = [];
         $productsWebcam = [];
+        $productHeadphones = [];
+        $productCases = [];
+        $productChargers = [];
         $desktops = null;
         $laptops = null;
         $keyboards = null;
@@ -97,6 +121,9 @@ class ProductController extends AbstractController
         $screens = null;
         $smartwatchs = null;
         $webcams = null;
+        $headphones = null;
+        $cases = null;
+        $chargers = null;
 
         switch ($name) {
             case 'Ordenadores';
@@ -179,6 +206,38 @@ class ProductController extends AbstractController
                     'webcams' => $webcams
                 ]);
             break;
+            case 'Accesorios';
+            $subcategories = $category->getSubCategories();
+            foreach ($subcategories as $s) {
+                if ($s->getName() === 'Funda') {
+                    $cases = $s->getDeviceCases();
+                    foreach ($cases as $c) {
+                        array_push($productCases, $c->getIdProduct());
+                    }
+                }
+                if ($s->getName() === 'Auriculares') {
+                    $headphones = $s->getHeadphones();
+                    foreach ($headphones as $h) {
+                        array_push($productHeadphones, $h->getIdProduct());
+                    }
+                }
+                if ($s->getName() === 'Cargador') {
+                    $chargers = $s->getChargers();
+                    foreach ($chargers as $h) {
+                        array_push($productChargers, $h->getIdProduct());
+                    }
+                }
+            }
+            //HACER UN RETURN PERSONALIZADO PARA CADA SUBCATEGORÍA
+            return $this->render('product/accesorios.html.twig', [
+                'productCases' => $productCases,
+                'productHeadphones' => $productHeadphones,
+                'productChargers' => $productChargers,
+                'cases' => $cases,
+                'headphones' => $headphones,
+                'chargers' => $chargers
+            ]);
+        break;
         }
         return $this->render('product/index.html.twig', [
 
