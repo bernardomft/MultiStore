@@ -115,12 +115,24 @@ function createCartView(data, stock) {
   return (tmp);
 }
 
+function checkLoging(){
+  if(getCookie('PHPSESSID') != ""){
+    var ses = $('#session')[0];
+    console.log(ses);
+    ses.innerHTML = "Mi perfil";
+  }
+  else{
+    console.log('poraqui');
+  }
+}
+
 function inicio() {
   //inicia todos los popover de bootstrap 4
   $(function () {
     $('[data-toggle="popover"]').popover()
   })
   viewCart();
+  checkLoging();
 }
 
 window.onload = inicio;
