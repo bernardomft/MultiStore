@@ -196,6 +196,11 @@ class Product
      */
     private $refrigerations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Cart::class, inversedBy="product")
+     */
+    private $cart;
+
     public function __construct()
     {
         $this->desktops = new ArrayCollection();
@@ -1001,6 +1006,18 @@ class Product
                 $refrigeration->setIdProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCart(): ?Cart
+    {
+        return $this->cart;
+    }
+
+    public function setCart(?Cart $cart): self
+    {
+        $this->cart = $cart;
 
         return $this;
     }

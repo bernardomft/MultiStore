@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% set total = 0 %}
+{% block title %}Cart
+{% endblock %}
+
+{% block body %}
+	<h1 class="h1 col-12 text-center">Carrito de compra</h1>
+
+	<div class="col-12 row justify-content-center ">
+		<div class="d-sm-none d-lg-flex col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+			<div class="col-1 text-center text-xs-left">
+				Nº
+			</div>
+			<div class="col-4 text-center">
+				Nombre	
+			</div>
+			<div class="col-2 text-center text-xs-left">
+				Unidades	
+			</div>
+			<div class="col-2 text-center">
+				Descuento(%)	
+			</div>
+			<div class="col-3 text-center">
+				Precio	
+			</div>
+		</div>
+		{% for i, product in products %}
+			<div class="col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+				<div class="col-1 text-center">
+					{{i + 1}}
+				</div>
+				<div class="col-4 text-center">
+					<a href="#">{{ product.Name }}</a></th>
+				</div>
+				<div class="col-2 text-center">
+					{{ stock[i] }} (x)
+				</div>
+				<div class="col-2 text-center">
+					{{ product.Disscount }}
+				</div>
+				<div class="col-3 text-center">
+					{{ product.Price }}$
+				</div>
+			</div>
+			{% set total = total + product.Price * stock[i] - product.Price * product.Disscount / 100 %}
+		{% endfor %}
+	</div>
+	<div class="mt-4 col-11 row justify-content-center align-items-center">
+		<div class=" offset-5  col-2 text-center">
+			TOTAL:
+		</div>
+		<div class="col-2 text-center">
+			{{total}} $
+		</div>
+		<div class="col-3 text-center row justify-content-lg-end">
+			<a href="{{asset('/order/newMenu')}}" class="col-8 btn btn-primary">Realizar pedido</a>
+		</div>
+	</div>
+
+	
+
+{% endblock %}

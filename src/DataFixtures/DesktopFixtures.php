@@ -15,10 +15,10 @@ class DesktopFixtures extends Fixture implements DependentFixtureInterface
    public const RAM_TECHNOLOGY = ['DDR3 SDRAM', 'DDR4', 'DDR4', 'DDR3 SDRAM'];
    public const HARD_DISK = ['240GB SSD', '2TB HDD 512GB SSD', '256GB SSD', '1TB HDD 240GB SSD'];
    public const PORCESSOR_MAKER = ['INTEL','INTEL', 'INTEL', 'INTEL'];
-   public const PORCESSOR_MODEL = ['Core i5 3474',
-                                'Core i7-10700KF',
-                                'Core i5-10400',
-                                'Core i3-10100'];
+   public const PORCESSOR_MODEL = ['Core i5',
+                                'Core i7',
+                                'Core i5',
+                                'Core i3'];
    public const PORCESSOR_VELOCITY = ['3.2 Ghz','3.8Ghz', '4.3Ghz', '4.3Ghz'];
    public const PORCESSOR_CORE = ['none', 'none', 'none' , '4'];
    public const PORCESSOR_CACHE = ['none' , 'none', 'none', 'none'];

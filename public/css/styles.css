@@ -30,6 +30,11 @@
     background-repeat: no-repeat;
     background-size: contain;
   }
+
+  footer.page-footer{
+    position: relative;
+    bottom: 0;
+  }
   
 
 
@@ -38,6 +43,11 @@
    body{
      font-size: 3em;
    }
+
+   h1.h1{
+     font-size: 1.5em;
+   }
+
     h2.h2, a.h3{
       font-size: 1.5em;
     }
@@ -50,7 +60,7 @@
     h5.card-title, a.btn.btn-card{
       font-size: 2em;
     }
-    a.btn.btn-primary{
+    button.btn.btn-primary, #stockSelect{
       font-size: 1em;
     }
     a.dropdown-item{
@@ -65,12 +75,16 @@
     img.card-img-top{
       height: 500px;
     }
+    
+    table.table{
+      overflow-x: auto;
+    }
   }
 
   @media screen and (min-width: 998px) {
     
     body{
-      font-size: 1.2em;
+      font-size: 1.5em;
     }
      h2.h2{
        font-size: 1.8em;

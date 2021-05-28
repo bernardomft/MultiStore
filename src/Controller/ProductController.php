@@ -247,9 +247,9 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/getCartInfo", options={"expose"=true} ,name="app_getCartInfo", methods={"POST", "GET"})
+     * @Route("/getInfoCarrito", options={"expose"=true} ,name="app_getInfoCarrito", methods={"POST", "GET"})
      */
-    public function getCartInfo(Request $request, ProductRepository $productRepository)
+    public function getInfoCarrito(Request $request, ProductRepository $productRepository)
     {
         if ($request->isXmlHttpRequest()) {
             $content = json_decode($request->getContent());
@@ -260,6 +260,7 @@ class ProductController extends AbstractController
                 array_push($arrray_tmp, $tmp);
             }
             return new Response(json_encode($arrray_tmp));
-        }
+        }else
+            return new Response(json_encode('cookie vacia'));
     }
 }

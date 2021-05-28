@@ -11,11 +11,11 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class ProductFixtures extends Fixture implements DependentFixtureInterface
 {
     //Ordenadores de sobremesa
-    public const NAMES = ['Hp Elite 8300 SFF',
+    public const NAMES = ['Hp Elite 8300 SFF v23FSD',
                         'MSI Meg Infinite X 10SD-669EU',
                         'Lenovo IdeaCentre 5',
                     'NITROPC - PC Gamer VX '];
-    public const MODELS = ['ELITE 8300 SFF', 
+    public const MODELS = ['ELITE 8300 SFF v23FSD', 
                         'MSI Meg Infinite X 10SD-669EU',
                         'Lenovo IdeaCentre 5',
                     'NITROPC - PC Gamer VX '];

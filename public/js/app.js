@@ -30,7 +30,7 @@ function setCookie(cname, cvalue, exdays) {
   var d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=Lax";
 }
 
 function getCookie(cname) {
@@ -68,7 +68,7 @@ function viewCart() {
 }
 
 function getCartInfo(id, stock) {
-  var route = Routing.generate('app_getCartInfo');
+  var route = Routing.generate('app_getInfoCarrito');
   $.ajax({
     type: 'POST',
     url: route,
@@ -110,29 +110,90 @@ function createCartView(data, stock) {
   tmp += `<div class=col-12 row justify-content-around>
             <div class="col-12 lead">TOTAL: ` + total + `$</div>
           </div>
-          <a class="col-12 btn btn-primary" href="#">VER CARRO DE COMPRA</a>  
+          <a class="col-12 btn btn-primary" href="/cart/show">VER CARRO DE COMPRA</a>  
   </>`
   return (tmp);
 }
 
-function checkLoging(){
-  if(getCookie('PHPSESSID') != ""){
-    var ses = $('#session')[0];
-    console.log(ses);
-    ses.innerHTML = "Mi perfil";
-  }
-  else{
-    console.log('poraqui');
+function checkLoging() {
+  var route = Routing.generate('app_isLooged');
+  $.ajax({
+    type: 'GET',
+    url: route,
+    async: true,
+    //dataType: "json",
+    //data: JSON.stringify(id),
+    success: function (data) {
+      console.log(JSON.parse(data));
+      if(JSON.parse(data) == "TRUE")
+        return true;
+      else 
+        return false;
+    }
+  });
+}
+
+function sendCartInfo(data, stock) {
+  var route = Routing.generate('app_addToCart');
+  $.ajax({
+    type: 'POST',
+    url: route,
+    async: true,
+    dataType: "json",
+    data: JSON.stringify([data, stock]),
+    success: function (data) {
+      console.log("exito");
+      //return true;
+    }
+  });
+}
+
+function cartManage() {
+  if (checkLoging) {
+    //Anañadir los productos al carrito
+    //Reestablecer cookie
+    //viewCart
+    var cookieCart = getCookie('cart');
+    if (cookieCart != "") {
+      var id = [];
+      var stock = [];
+      var tmp = cookieCart.split('/');
+      tmp.forEach(t => {
+        var tmp2 = t.split(',');
+        id.push(tmp2[0]);
+        stock.push(tmp2[1]);
+      })
+      console.log(id);
+      sendCartInfo(id, stock);
+      setCookie('cart', '', new Date().toUTCString());
+    }
+
+  } else {
+    viewCart()
   }
 }
 
+function getCart(id){
+  var stock = document.getElementById('stockSelect').options.selectedIndex + 1;
+  console.log(stock);
+  var route = Routing.generate('app_addToCart');
+  var arrayTmp= [id,stock];
+  $.ajax({
+    type: 'POST',
+    url: route,
+    async: true,
+    dataType: "text",
+    data: JSON.stringify(arrayTmp),
+    success: function (data) {
+      console.log("exitoff" + data);
+    }
+  });
+}
+
 function inicio() {
-  //inicia todos los popover de bootstrap 4
   $(function () {
     $('[data-toggle="popover"]').popover()
   })
-  viewCart();
-  checkLoging();
 }
 
 window.onload = inicio;

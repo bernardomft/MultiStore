@@ -150,13 +150,15 @@
 					<button type="button" class="btn btn-secondary">Sing Up</button>
 				</a>
 			</div>
-			<div class="btn-group" role="group" aria-label="Third group">
-				<a>
-					<button id="cart" type="button" onclick="viewCart()" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true"  data-content="Vivamus">
+			<div class="btn-group mr-2" role="group" aria-label="Second group">
+				<a class="" href="{{ asset('/cart/show')}}" >
+					<button type="button" class="btn btn-secondary">
 						<img class="img-cart" src="{{ asset('images/carro-de-la-compra.png') }}" width="25px"/>
 					</button>
 				</a>
 			</div>
+
+			
 		</div>
 	</div>
 </nav>

@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+{% set total = 0 %}
+
+{% block title %}New Order{% endblock %}
+
+{% block body %}
+    <h1 class="h1 col-12 text-center">Realiza tu pedido</h1>
+    <div class="col-12 row justify-content-center ">
+		<div class="d-sm-none d-lg-flex col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+			<div class="col-1 text-center text-xs-left">
+				Nº
+			</div>
+			<div class="col-4 text-center">
+				Nombre	
+			</div>
+			<div class="col-2 text-center text-xs-left">
+				Unidades	
+			</div>
+			<div class="col-2 text-center">
+				Descuento(%)	
+			</div>
+			<div class="col-3 text-center">
+				Precio	
+			</div>
+		</div>
+		{% for i, product in products %}
+			<div class="col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+				<div class="col-1 text-center">
+					{{i + 1}}
+				</div>
+				<div class="col-4 text-center">
+					<a href="#">{{ product.Name }}</a></th>
+				</div>
+				<div class="col-2 text-center">
+					{{ stock[i] }} (x)
+				</div>
+				<div class="col-2 text-center">
+					{{ product.Disscount }}
+				</div>
+				<div class="col-3 text-center">
+					{{ product.Price }}$
+				</div>
+			</div>
+			{% set total = total + product.Price * stock[i] - product.Price * product.Disscount / 100 %}
+		{% endfor %}
+	</div>
+    <div class="mt-4 col-11 row justify-content-center align-items-center">
+		<div class=" offset-8  col-2 text-center">
+			TOTAL:
+		</div>
+		<div class="col-2 text-center">
+			{{total}} $
+		</div>
+	</div>
+    <form class="" method="POST" action="{{asset('/order/new')}}">
+        <div class="form-group">
+            <label for="street">Calle: </label>
+            <input id="street" name="street" type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="number">Número: </label>
+            <input id="number" name="number" type="number" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="floor">Piso: </label>
+            <input id="floor" name="floor" type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="door">Puerta: </label>
+            <input id="door" name="door" type="text" class="form-control" placeholder="">
+        </div>
+         <div class="form-group">
+            <label for="city">Población: </label>
+            <input id="city" name="city" type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="zip">Código postal: </label>
+            <input id="zip" name="zip"  type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="region">Provincia: </label>
+            <input id="region" name="region"  type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="card_number">Número tarjeta: </label>
+            <input id="card_number" name="card_number"  type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="off_date">Fecha caducidad: </label>
+            <input id="off_date" name="off_date"  type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="ccv">CCV: </label>
+            <input id="ccv" name="ccv"  type="text" class="form-control" placeholder="">
+        </div>
+        <button type="submit" class="btn btn-primary">Pagar</button>
+    </form>
+
+{% endblock %}
