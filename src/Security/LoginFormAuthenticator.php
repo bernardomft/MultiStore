@@ -19,12 +19,14 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = 'app_login_modal';
 
     private $entityManager;
     private $urlGenerator;
@@ -72,6 +74,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
+
         }
 
         return $user;

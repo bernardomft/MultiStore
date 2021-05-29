@@ -162,6 +162,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "sideclick/bootstrap-modal-bundle": {
+        "version": "1.2"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
