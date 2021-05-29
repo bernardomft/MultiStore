@@ -140,16 +140,29 @@
 			</li>
 		</ul>
 		<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-			<div class="btn-group mr-2" role="group" aria-label="First group">
-				<a class="" href="{{ asset('/login')}}">
-					<button type="button" class=" btn btn-secondary" id="session">Log In</button>
-				</a>
-			</div>
-			<div class="btn-group mr-2" role="group" aria-label="Second group">
-				<a>
-					<button type="button" class="btn btn-secondary">Sing Up</button>
-				</a>
-			</div>
+			{% if app.user  %}
+				<div class="btn-group mr-2" role="group" aria-label="First group">
+					<a class="" href="{{ asset('/user/show')}}">
+						<button type="button" class=" btn btn-secondary" id="session">{{app.user.name}}</button>
+					</a>
+				</div>
+				<div class="btn-group mr-2" role="group" aria-label="First group">
+					<a class="" href="{{ asset('/logout/')}}">
+						<button type="button" class=" btn btn-secondary" id="session">Log Out</button>
+					</a>
+				</div>
+			{% else %}
+				<div class="btn-group mr-2" role="group" aria-label="First group">
+					<a class="" href="{{ asset('/login')}}">
+						<button type="button" class=" btn btn-secondary" id="session">Log In</button>
+					</a>
+				</div>
+				<div class="btn-group mr-2" role="group" aria-label="Second group">
+					<a>
+						<button type="button" class="btn btn-secondary">Sing Up</button>
+					</a>
+				</div>
+			{% endif %}
 			<div class="btn-group mr-2" role="group" aria-label="Second group">
 				<a class="" href="{{ asset('/cart/show')}}" >
 					<button type="button" class="btn btn-secondary">
@@ -157,7 +170,6 @@
 					</button>
 				</a>
 			</div>
-
 			
 		</div>
 	</div>

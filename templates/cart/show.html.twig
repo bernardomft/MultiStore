@@ -14,36 +14,48 @@
 			<div class="col-4 text-center">
 				Nombre	
 			</div>
-			<div class="col-2 text-center text-xs-left">
+			<div class="col-1 text-center text-xs-left">
 				Unidades	
 			</div>
 			<div class="col-2 text-center">
 				Descuento(%)	
 			</div>
-			<div class="col-3 text-center">
+			<div class="col-2 text-center">
 				Precio	
 			</div>
-		</div>
-		{% for i, product in products %}
-			<div class="col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
-				<div class="col-1 text-center">
-					{{i + 1}}
-				</div>
-				<div class="col-4 text-center">
-					<a href="#">{{ product.Name }}</a></th>
-				</div>
-				<div class="col-2 text-center">
-					{{ stock[i] }} (x)
-				</div>
-				<div class="col-2 text-center">
-					{{ product.Disscount }}
-				</div>
-				<div class="col-3 text-center">
-					{{ product.Price }}$
-				</div>
+			<div class="col-1 text-center">
+					
 			</div>
-			{% set total = total + product.Price * stock[i] - product.Price * product.Disscount / 100 %}
-		{% endfor %}
+		</div>
+		{% if stock|length > 0 %}
+			{% for i, product in products %}
+				<div class="col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+					
+					
+					<div class="col-1 text-center">
+						{{i + 1}}
+					</div>
+					<div class="col-4 text-center">
+						<a href="#">{{ product.Name }}</a></th>
+					</div>
+					<div class="col-1 text-center">
+						{{ stock[i] }} (x)
+					</div>
+					<div class="col-2 text-center">
+						{{ product.Disscount }}
+					</div>
+					<div class="col-2 text-center">
+						{{ product.Price }}$
+					</div>
+					<div class="col-1 text-center">
+						<a href="{{asset('/cart/delete/product/' ~  product.id )}}" class="btn btn-danger">X</a>
+					</div>
+					
+				</div>
+				{% set total = total + product.Price * stock[i] - product.Price * product.Disscount / 100 %}
+			{% endfor %}
+		{% endif %}
+		
 	</div>
 	<div class="mt-4 col-11 row justify-content-center align-items-center">
 		<div class=" offset-5  col-2 text-center">
@@ -53,7 +65,13 @@
 			{{total}} $
 		</div>
 		<div class="col-3 text-center row justify-content-lg-end">
-			<a href="{{asset('/order/newMenu')}}" class="col-8 btn btn-primary">Realizar pedido</a>
+			<a 
+			{% if stock|length > 0 %}
+				href="{{asset('/order/newMenu')}}"
+			{% else %}
+				href="#"
+			{% endif  %}
+			 class="col-8 btn btn-primary">Realizar pedido</a>
 		</div>
 	</div>
 

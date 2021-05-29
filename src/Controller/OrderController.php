@@ -88,6 +88,7 @@ class OrderController extends AbstractController
             $tmp_order_protuct->setIdProduct($products[$i]);
             $cart->removeProduct($products[$i]);
             array_push($orderProduct, $tmp_order_protuct);
+            //$products[$i]->setStock
         }
         $order->setAddress($addres);
         $order->setAmount($cost);
@@ -105,7 +106,7 @@ class OrderController extends AbstractController
         $entityManager->flush();
 
         /*REDIRIGIR A PÁGINA DE PEDIDOS DE USUARIO */
-       return new Response("ca bien");
+       return $this->redirectToRoute('user_show');
     }
 
     /**

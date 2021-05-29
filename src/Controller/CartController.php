@@ -109,6 +109,23 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_index');
     }
 
+    /**
+     * @Route("/delete/product/{id}", name="cart_delete_product", methods={"GET","POST"})
+     */
+    public function deleteProduct(int $id,Request $request, ProductRepository $productRepository): Response
+    {
+        $user = $this->getUser();
+        $cart = $user->getCart();
+        $product = $productRepository->findOneBy(['id' => $id]);
+        $cart->removeProduct($product);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($cart);
+        $entityManager->persist($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('cart_show');
+    }
+
      /**
      * @Route("/AddToCart/", name="app_addToCart", options={"expose"=true}, methods={"GET","POST"})
      */
