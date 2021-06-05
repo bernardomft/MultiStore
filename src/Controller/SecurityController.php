@@ -38,9 +38,31 @@ class SecurityController extends AbstractController
     {
         $credentials = $loginFormAuthenticator->getCredentials($request);
         //$tmp_user = $loginFormAuthenticator->getUser($credentials, $userProviderInterface );
-        /*if ($this->getUser()) {
+        if ($this->getUser()) {
              return $this->redirectToRoute('user_show');
-        }*/
+        }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+        
+        //return new Response('hhhueeee');
+        if($error != null){
+            if($error->getMessageKey() != "Invalid CSRF token.")
+                return new Response($error->getMessageKey());
+            else
+                return $this->redirectToRoute('user_show');
+        }
+        return $this->render('security/login_modal.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    }
+
+    /**
+     * @Route("/login/get/modal", name="app_login_get_modal", methods={"POST","GET"}, options={"expose"=true})
+     */
+    public function getLoginModal(Request $request, AuthenticationUtils $authenticationUtils, LoginFormAuthenticator $loginFormAuthenticator, UserProviderInterface $userProviderInterface): Response
+    {
+       
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

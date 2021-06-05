@@ -30,6 +30,22 @@ function loginModal(){
   });
 }
 
+function getLoginModal(){
+  console.log('por aqui');
+  var route = Routing.generate('app_login_get_modal');
+  $.ajax({
+    type: 'POST',
+    url: route,
+    async: true,
+    success: function (data) {
+      console.log(data);
+      var modalBody = document.getElementById('modalBody');
+      console.log(modalBody);
+      modalBody.innerHTML =modalBody.innerHTML +  data; 
+    }
+  });
+}
+
 function inicio() {
   $(function () {
     $('[data-toggle="popover"]').popover()
