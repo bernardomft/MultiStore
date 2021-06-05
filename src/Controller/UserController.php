@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Cart;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
@@ -26,27 +29,59 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/new/menu", name="user_new_menu", methods={"GET","POST"})
+     */
+    public function newMenu(Request $request): Response
+    {
+        return $this->render('user/new_menu.html.twig');
+    }
+
+    /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserPasswordEncoderInterface $userPasswordEncoderInterface): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        $entityManager = $this->getDoctrine()->getManager();
+        $name = $request->request->get('name');
+        $surname = $request->request->get('surname');
+        $address = $request->request->get('address');
+        $email = $request->request->get('email');
+        $username = $request->request->get('username');
+        $password = $request->request->get('password');
+        $birthday = $request->request->get('birthday');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+        $checkEmail = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+        $checkUserName = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+        if($checkEmail != null){
+            $this->addFlash(
+                'error',
+                'Ya existe un usuario con esta cuenta de correo electrónico'
+            );
+            return $this->redirectToRoute('user_new_menu');
+        }else if($checkUserName != null){
+            $this->addFlash(
+                'error',
+                'Ya existe un usuario con este nombre de ususario'
+            );
+            return $this->redirectToRoute('user_new_menu');
+        }
+        else{
+            $user = new User();
+            $cart = new cart();
             $user->setRoles(['ROLE_USER']);
+            $user->setUsername($username);
+            $user->setEmail($email);
+            $user->setName($name);
+            $user->setSurname($surname);
+            $user->setAddress($address);
+            $user->setBirthday(new DateTime($birthday));  
+            $user->setPassword($userPasswordEncoderInterface->encodePassword($user, $password));
+            $user->setCart($cart);
+            $entityManager->persist($cart);
             $entityManager->persist($user);
             $entityManager->flush();
-
             return $this->redirectToRoute('app_index');
         }
-
-        return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -63,23 +98,24 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @Route("/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request): Response
     {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
+        $user = $this->getUser();
+        $entityManager = $this->getDoctrine()->getManager();
+        $name = $request->request->get('name');
+        $surname = $request->request->get('surname');
+        $address = $request->request->get('address');
+        if($name != null && $name != "")
+            $user->setName($name);
+        if($surname != null && $surname != "")
+            $user->setsurname($surname);
+        if($address != null && $address != "")
+            $user->setaddress($address);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('user_show');
     }
 
     /**

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Usuario{% endblock %}
+
+{% block body %}
+    <h1 class="h1 col-12">Nuevo usuario</h1>
+    {% for message in app.flashes('error') %}
+    <div class="flash-error">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <form method="POST" action="{{asset('/user/new')}}" class="col-12 form row justify-content-center">
+        <div class="form-group">
+            <label for="name">Nombre: </label>
+            <input id="name" name="name" type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="surname">Apellidos: </label>
+            <input id="surname" name="surname" type="text" class="form-control" placeholder="">
+        </div>
+         <div class="form-group">
+            <label for="address">Direccion: </label>
+            <input id="address" name="address" type="text" class="form-control" placeholder="">
+        </div>
+         <div class="form-group">
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="text" class="form-control" placeholder="">
+        </div>
+         <div class="form-group">
+            <label for="username">Nombre de usuario: </label>
+            <input id="username" name="username" type="text" class="form-control" placeholder="">
+        </div>
+         <div class="form-group">
+            <label for="password">Contraseña: </label>
+            <input id="password" name="password" type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="birthday">Fecha de nacimiento: </label>
+            <input id="birthday" name="birthday" type="date" class="form-control" placeholder="">
+        </div>
+        <button type="submit" class="btn btn-primary">Crear usuario</button>
+    </form>
+    
+{% endblock %}

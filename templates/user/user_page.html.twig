@@ -19,31 +19,57 @@
             <div> {{order.state}}</div>
         </div>
     {% endfor %}
-    <h1 class="h1 col-12 text-center">Página de usuario</h1>
-	<form class="col-12">
-		<div class="form-group">
-			<label for="username">Nombre de usuario: </label>
-			<input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="">
+	<h1 class="h1 col-12 text-center">Información de usuario</h1>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Nombre:</p>
+			<p class="p">{{user.name}}</p>
 		</div>
-        <div class="form-group">
-			<label for="email">Email: </label>
-			<input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="">
+	</div>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Apellidos:</p>
+			<p class="p">{{user.surname}}</p>
 		</div>
+	</div>
+	
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Dirección:</p>
+			<p class="p">{{user.address}}</p>
+		</div>
+	</div>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Email:</p>
+			<p class="p">{{user.email}}</p>
+		</div>
+	</div>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Nombre de usuario:</p>
+			<p class="p">{{user.username}}</p>
+		</div>
+	</div>
+		<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Fecha de nacimiento:</p>
+			<p class="p">{{user.birthday|date('d/m/Y')}}</p>
+		</div>
+	</div>
+    <h1 class="h1 col-12 text-center">Edicion de Información</h1>
+	<form method="POST" action="{{asset('/user/edit')}}" class="col-12">
         <div class="form-group">
 			<label for="name">Nombre: </label>
-			<input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="">
+			<input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="" value="{{user.name}}">
 		</div>
         <div class="form-group">
 			<label for="surname">Apellidos: </label>
-			<input type="text" name="surname" class="form-control" id="surname" aria-describedby="emailHelp" placeholder="">
-		</div>
-        <div class="form-group">
-			<label for="birdthday">fecha de nacimiento: </label>
-			<input type="date" name="birdthday" class="form-control" id="birdthday" aria-describedby="emailHelp" placeholder="">
+			<input type="text" name="surname" class="form-control" id="surname" aria-describedby="emailHelp" placeholder="" value="{{user.surname}}">
 		</div>
          <div class="form-group">
-			<label for="picture">Foto: </label>
-			<input type="file" name="picture" class="form-control" id="picture" aria-describedby="emailHelp" placeholder="">
+			<label for="address">Dirección: </label>
+			<input type="text" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="" value="{{user.address}}">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
