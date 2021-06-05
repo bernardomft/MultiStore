@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\DesktopRepository;
 use App\Security\LoginFormAuthenticator;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,7 +35,7 @@ class SecurityController extends AbstractController
      /**
      * @Route("/login/modal", name="app_login_modal", methods={"POST","GET"}, options={"expose"=true})
      */
-    public function loginModal(Request $request, AuthenticationUtils $authenticationUtils, LoginFormAuthenticator $loginFormAuthenticator, UserProviderInterface $userProviderInterface): Response
+    public function loginModal(Request $request, AuthenticationUtils $authenticationUtils, LoginFormAuthenticator $loginFormAuthenticator, UserProviderInterface $userProviderInterface, DesktopRepository $desktopRepository): Response
     {
         $credentials = $loginFormAuthenticator->getCredentials($request);
         //$tmp_user = $loginFormAuthenticator->getUser($credentials, $userProviderInterface );
@@ -49,8 +50,10 @@ class SecurityController extends AbstractController
         
         //return new Response('hhhueeee');
         if($error != null){
-            if($error->getMessageKey() != "Invalid CSRF token.")
-                return new Response($error->getMessageKey());
+            if($error->getMessageKey() != "Invalid CSRF token."){
+                return $this->render('security/login_error.html.twig',
+                            ['errorMessage' => $error->getMessageKey()]);
+            }
             else
                 return $this->redirectToRoute('user_show');
         }
