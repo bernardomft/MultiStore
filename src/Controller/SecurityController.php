@@ -61,8 +61,11 @@ class SecurityController extends AbstractController
         //return new Response('hhhueeee');
         if($error != null){
             if($error->getMessageKey() != "Invalid CSRF token."){
-                return $this->render('security/login_error.html.twig',
-                            ['errorMessage' => $error->getMessageKey()]);
+                $this->addFlash(
+                    'error',
+                    $error->getMessageKey()
+                );
+                return $this->redirectToRoute('app_index');
             }
             else
                 return $this->redirectToRoute('user_show');
