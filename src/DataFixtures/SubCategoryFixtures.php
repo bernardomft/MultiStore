@@ -12,7 +12,6 @@ class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
 {
     public const COMPUTERS = ['PC/Sobremesa' ,'Portatil'];
     public const PERIFERICS = ['Teclado' ,'Raton', 'Pantalla'];
-    public const COMPONENTS = ['Disco duro' ,'Caja', 'Placa base', 'Procesador', 'Tarjeta gráfica' , 'Fuente de alimentación' , 'Refrigeración'];
     public const ACEESORIES = ['Funda' ,'Cargador', 'Auriculares'];
     public const GADGETS = ['Smartwatch' ,'Webcam'];
 
@@ -38,15 +37,6 @@ class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
             $this->addReference($p, $subCategory);
         }
 
-        foreach(self::COMPONENTS as $c){
-            $subCategory = new SubCategory();
-            $subCategory->setName($c);
-            $subCategory->setDescription('Descripcion de ' . $c);
-            $subCategory->setIdCategory($this->getReference('Componentes'));
-            $manager->persist($subCategory);
-            $manager->flush();
-            $this->addReference($c, $subCategory);
-        }
 
         foreach(self::ACEESORIES as $a){
             $subCategory = new SubCategory();
