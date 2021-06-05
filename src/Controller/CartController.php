@@ -129,7 +129,7 @@ class CartController extends AbstractController
      /**
      * @Route("/AddToCart/", name="app_addToCart", options={"expose"=true}, methods={"GET","POST"})
      */
-    public function cartAdd(Request $request, ProductRepository $productRepository) :RedirectResponse
+    public function cartAdd(Request $request, ProductRepository $productRepository) :Response
     {
        if($request->isXmlHttpRequest()){
             $entityManager = $this->getDoctrine()->getManager();
@@ -138,6 +138,7 @@ class CartController extends AbstractController
             $params=json_decode($request->getContent());
             $id=$params[0];
             $stock=$params[1];
+            
             
             $user=$this->getUser();
             $cart=$user->getCart();
@@ -151,7 +152,8 @@ class CartController extends AbstractController
             $entityManager->persist($cart);
             $entityManager->flush();
             //$this->show($request);
-            return $this->redirectToRoute('cart_show');
+            return new Response('true');
        }
+       //return new Response("");
     }
 }
