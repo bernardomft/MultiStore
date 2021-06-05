@@ -76,6 +76,11 @@ class User implements UserInterface
      */
     private $cart;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Store::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $store;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -279,6 +284,23 @@ class User implements UserInterface
         }
 
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getStore(): ?Store
+    {
+        return $this->store;
+    }
+
+    public function setStore(Store $store): self
+    {
+        // set the owning side of the relation if necessary
+        if ($store->getUser() !== $this) {
+            $store->setUser($this);
+        }
+
+        $this->store = $store;
 
         return $this;
     }

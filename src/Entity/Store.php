@@ -54,19 +54,22 @@ class Store
      */
     private $webPage;
 
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
-     */
-    private $idUser;
+    
 
     /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="idStore")
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="store", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $products;
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="store", orphanRemoval=true)
+     */
+    private $Products;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->Products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -158,14 +161,16 @@ class Store
         return $this;
     }
 
-    public function getIdUser(): ?User
+   
+
+    public function getUser(): ?User
     {
-        return $this->idUser;
+        return $this->user;
     }
 
-    public function setIdUser(?User $idUser): self
+    public function setUser(User $user): self
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
@@ -175,14 +180,14 @@ class Store
      */
     public function getProducts(): Collection
     {
-        return $this->products;
+        return $this->Products;
     }
 
     public function addProduct(Product $product): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->setIdStore($this);
+        if (!$this->Products->contains($product)) {
+            $this->Products[] = $product;
+            $product->setStore($this);
         }
 
         return $this;
@@ -190,10 +195,10 @@ class Store
 
     public function removeProduct(Product $product): self
     {
-        if ($this->products->removeElement($product)) {
+        if ($this->Products->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($product->getIdStore() === $this) {
-                $product->setIdStore(null);
+            if ($product->getStore() === $this) {
+                $product->setStore(null);
             }
         }
 

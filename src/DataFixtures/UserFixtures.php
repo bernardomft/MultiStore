@@ -35,7 +35,7 @@ class UserFixtures extends Fixture
         $admin->setPassword($this->userPasswordEncoderInterface->encodePassword($admin, '1324asdf'));
         $manager->persist($admin);
         $manager->flush();
-        $this->addReference(self::USER_ADMIN_REFERENCE, $admin);
+        $this->addReference('ADMIN_USER', $admin);
 
         for($i=0;$i<12;$i++){
             $user = new User();

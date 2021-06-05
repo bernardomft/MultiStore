@@ -23,7 +23,7 @@ class StoreFixture extends Fixture implements DependentFixtureInterface
         $store->setBalance(0.0);
         $store->setDescription('Multistore descripcion');
         $store->setWebPage('www.multistore.com');
-        $store->setIdUser($this->getReference(UserFixtures::USER_ADMIN_REFERENCE));
+        $store->setUser($this->getReference('ADMIN_USER'));
         $manager->persist($store);
         $manager->flush();
         $this->addReference('MultiStore', $store);
@@ -36,7 +36,7 @@ class StoreFixture extends Fixture implements DependentFixtureInterface
         $store->setBalance(0.0);
         $store->setDescription('GuilleStore descripcion');
         $store->setWebPage('www.GuilleStore.com');
-        $store->setIdUser($this->getReference('Guille'));
+        $store->setUser($this->getReference('Guille'));
         $manager->persist($store);
         $manager->flush();
         $this->addReference('GuilleStore', $store);
@@ -49,7 +49,7 @@ class StoreFixture extends Fixture implements DependentFixtureInterface
         $store->setBalance(0.0);
         $store->setDescription('DaniStore descripcion');
         $store->setWebPage('www.DaniStore.com');
-        $store->setIdUser($this->getReference('Dani'));
+        $store->setUser($this->getReference('Dani'));
         $manager->persist($store);
         $manager->flush();
         $this->addReference('DaniStore', $store);
@@ -62,7 +62,7 @@ class StoreFixture extends Fixture implements DependentFixtureInterface
         $store->setBalance(0.0);
         $store->setDescription('AdriStore descripcion');
         $store->setWebPage('www.AdriStore.com');
-        $store->setIdUser($this->getReference('Adri'));
+        $store->setUser($this->getReference('Adri'));
         $manager->persist($store);
         $manager->flush();
         $this->addReference('AdriStore', $store);

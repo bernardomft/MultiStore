@@ -48,7 +48,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(self::PRICE[$i]);
             $product->setDisscount(self::DISCOUNT[$i]);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Ordenadores'));
             $manager->persist($product);
             $manager->flush();
@@ -67,7 +67,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(self::PRICE[$i]);
             $product->setDisscount(self::DISCOUNT[$i]);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Ordenadores'));
             $manager->persist($product);
             $manager->flush();
@@ -86,7 +86,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(1449.00);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Ordenadores'));
             $manager->persist($product);
             $manager->flush();
@@ -105,7 +105,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(194.99);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Perifericos'));
             $manager->persist($product);
             $manager->flush();
@@ -125,7 +125,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(8.99);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Perifericos'));
             $manager->persist($product);
             $manager->flush();
@@ -144,7 +144,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(149.00);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Perifericos'));
             $manager->persist($product);
             $manager->flush();
@@ -163,7 +163,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(359.00);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Gadgets'));
             $manager->persist($product);
             $manager->flush();
@@ -182,7 +182,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(86.61);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Gadgets'));
             $manager->persist($product);
             $manager->flush();
@@ -201,7 +201,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(54.99);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Accesorios'));
             $manager->persist($product);
             $manager->flush();
@@ -221,7 +221,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(54.99);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Accesorios'));
             $manager->persist($product);
             $manager->flush();
@@ -241,7 +241,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPrice(15.99);
             $product->setDisscount(0);
             $product->setSecondHand(false);
-            $product->setIdStore($this->getReference('MultiStore'));
+            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Accesorios'));
             $manager->persist($product);
             $manager->flush();

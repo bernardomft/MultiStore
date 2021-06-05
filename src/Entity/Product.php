@@ -84,11 +84,7 @@ class Product
      */
     private $year;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idStore;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
@@ -161,6 +157,12 @@ class Product
      * @ORM\ManyToOne(targetEntity=Cart::class, inversedBy="product")
      */
     private $cart;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="Products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $store;
 
     public function __construct()
     {
@@ -339,17 +341,7 @@ class Product
         return $this;
     }
 
-    public function getIdStore(): ?Store
-    {
-        return $this->idStore;
-    }
-
-    public function setIdStore(?Store $idStore): self
-    {
-        $this->idStore = $idStore;
-
-        return $this;
-    }
+   
 
     public function getIdCategory(): ?Category
     {
@@ -731,6 +723,18 @@ class Product
     public function setCart(?Cart $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getStore(): ?Store
+    {
+        return $this->store;
+    }
+
+    public function setStore(?Store $store): self
+    {
+        $this->store = $store;
 
         return $this;
     }
