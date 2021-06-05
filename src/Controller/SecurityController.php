@@ -15,6 +15,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SecurityController extends AbstractController
 {
+     /**
+     * @Route("/user/check", name="app_check_user", methods={"POST","GET"}, options={"expose"=true})
+     */
+    public function checkUser(){
+        if($this->getUser()){
+            return new Response('true');
+        }
+        else
+            return new Response('false');
+    }
     /**
      * @Route("/login", name="app_login")
      */

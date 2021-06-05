@@ -41,7 +41,39 @@ function getLoginModal(){
       console.log(data);
       var modalBody = document.getElementById('modalBody');
       console.log(modalBody);
-      modalBody.innerHTML =modalBody.innerHTML +  data; 
+      modalBody.innerHTML = data; 
+    }
+  });
+}
+
+function getCart(){
+  console.log('por aqui');
+  var route = Routing.generate('cart_show');
+  $.ajax({
+    type: 'GET',
+    url: route,
+    async: false,
+    success: function (data){
+      document.innerHTML = data;
+    }
+  });
+}
+
+function checkUser(){
+  console.log('por aqui');
+  var route = Routing.generate('app_check_user');
+  $.ajax({
+    type: 'GET',
+    url: route,
+    async: false,
+    success: function (data) {
+     if(data == 'true'){
+       console.log('hay usuario')
+       location.href = '/cart/show';
+     }else if(data == 'false'){
+       $('#modal').modal('show');
+       getLoginModal();
+     }
     }
   });
 }

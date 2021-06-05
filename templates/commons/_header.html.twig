@@ -172,7 +172,6 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save changes</button>
 								</div>
 							</div>
 						</div>
@@ -188,8 +187,8 @@
 				</div>
 			{% endif %}
 			<div class="btn-group mr-2" role="group" aria-label="Second group">
-				<a class="" href="{{ asset('/cart/show')}}">
-					<button type="button" class="btn btn-secondary">
+				<a class="" href="#">
+					<button type="button"  onClick="checkUser()" class="btn btn-secondary">
 						<img class="img-cart" src="{{ asset('images/carro-de-la-compra.png') }}" width="25px"/>
 					</button>
 				</a>

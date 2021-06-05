@@ -52,7 +52,7 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/show", name="cart_show", methods={"GET","POST"})
+     * @Route("/show", name="cart_show", methods={"GET","POST"}, options={"expose"=true})
      */
     public function show(Request $request): Response
     {   
