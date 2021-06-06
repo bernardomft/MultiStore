@@ -46,7 +46,10 @@ class UserFixtures extends Fixture
             $user->setAddress('Calle'.$i.'16 3ºP');
             $user->setBirthday(new \DateTime('2021-04-13 10:00:00'));
             $user->setPicture(null);
-            $user->setRoles(['ROLE_USER']);
+            if(self::NAMES[$i] == 'Guille')
+                $user->setRoles(['ROLE_STORE']);
+            else
+                $user->setRoles(['ROLE_USER']);
             $user->setPassword($this->userPasswordEncoderInterface->encodePassword($user, '1324asdf'));
             $manager->persist($user);
             $manager->flush();

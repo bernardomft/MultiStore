@@ -11,6 +11,8 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
 {
     public const COMPUTERS = ['PC/Sobremesa' ,'Portatil'];
+    public const COMPUTERS_CART = ['ramMemory#ramTechnology#RamFrequency#HardDisk#processorMaker#processorModel#processorVelocity#processorCore#processorCache#graphicMaker#graphicModel#graphicTechnology#graphicCapacity#graphicInterface#usb2_0#usb3_0#hdmi#dvi#bluetooth',
+                                    'none'];
     public const PERIFERICS = ['Teclado' ,'Raton', 'Pantalla'];
     public const ACEESORIES = ['Funda' ,'Cargador', 'Auriculares'];
     public const GADGETS = ['Smartwatch' ,'Webcam'];
@@ -21,6 +23,7 @@ class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
             $subCategory = new SubCategory();
             $subCategory->setName($c);
             $subCategory->setDescription('Descripcion de ' . $c);
+            $subCategory->setCaracteristics(self::COMPUTERS_CART[array_search($c,self::COMPUTERS)]);
             $subCategory->setIdCategory($this->getReference('Ordenadores'));
             $manager->persist($subCategory);
             $manager->flush();

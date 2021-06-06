@@ -85,6 +85,13 @@ class SubCategory
      */
     private $webcams;
 
+    /**
+     * @ORM\Column(type="string", length=1200, nullable=true)
+     */
+    private $caracteristics;
+
+   
+
 
     public function __construct()
     {
@@ -440,5 +447,19 @@ class SubCategory
 
         return $this;
     }
+
+    public function getCaracteristics(): ?string
+    {
+        return $this->caracteristics;
+    }
+
+    public function setCaracteristics(?string $caracteristics): self
+    {
+        $this->caracteristics = $caracteristics;
+
+        return $this;
+    }
+
+    
 
 }

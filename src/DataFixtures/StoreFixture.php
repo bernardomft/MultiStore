@@ -40,32 +40,6 @@ class StoreFixture extends Fixture implements DependentFixtureInterface
         $manager->persist($store);
         $manager->flush();
         $this->addReference('GuilleStore', $store);
-
-        $store = new Store();
-        $store->setName('DaniStore');
-        $store->setUsername('DaniStore');
-        $store->setNif('11111111C');
-        $store->setAddress('calle avenida 12 4D');
-        $store->setBalance(0.0);
-        $store->setDescription('DaniStore descripcion');
-        $store->setWebPage('www.DaniStore.com');
-        $store->setUser($this->getReference('Dani'));
-        $manager->persist($store);
-        $manager->flush();
-        $this->addReference('DaniStore', $store);
-
-        $store = new Store();
-        $store->setName('AdriStore');
-        $store->setUsername('AdriStore');
-        $store->setNif('11111111D');
-        $store->setAddress('calle avenida 10 4D');
-        $store->setBalance(0.0);
-        $store->setDescription('AdriStore descripcion');
-        $store->setWebPage('www.AdriStore.com');
-        $store->setUser($this->getReference('Adri'));
-        $manager->persist($store);
-        $manager->flush();
-        $this->addReference('AdriStore', $store);
     }
 
     public function getDependencies()

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User
+{% endblock %}
+
+{% block body %}
+	<h1 class="h1 col-12 text-center">Información de tienda</h1>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Nombre:</p>
+			<p class="p">{{store.name}}</p>
+		</div>
+	</div>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">NIF:</p>
+			<p class="p">{{store.nif}}</p>
+		</div>
+	</div>
+	
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Dirección:</p>
+			<p class="p">{{store.address}}</p>
+		</div>
+	</div>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Descripción:</p>
+			<p class="p">{{store.description}}</p>
+		</div>
+	</div>
+	<div class="col-12 row justify-content-start">
+		<div class="col-6 row justify-content-start">
+			<p class="p">Email:</p>
+			<p class="p">{{user.email}}</p>
+		</div>
+	</div>
+	<div class="col-12 row justify-content-start">
+		<a href="{{asset('/store/new/product')}}">
+			<button class="btn btn-primary">Ofrecer nuevo producto</button>
+		</a>
+	</div>
+    <h1 class="h1 col-12 text-center">Productos vendidos</h1>
+	
+
+    
+
+
+{% endblock %}

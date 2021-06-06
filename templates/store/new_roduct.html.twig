@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User
+{% endblock %}
+
+{% block body %}
+	<h1 class="h1 col-12 text-center">Nuevo producto</h1>
+	<div class="col-12 row" id="containerNewProduct">
+		<div class="col-4 row justify-content-end">
+			<div class="col-6">Categoria</div>
+			<select id="categorySelect" class=" col-6 lead form-select" aria-label="Default select example">
+				{% for categorie in categories %}
+					<option value="{{categorie.name}}">{{categorie.name}}</option>
+				{% endfor %}
+			</select>
+			<button class="col-4 btn btn-primary mt-2" onClick="getSubCategories()">Seleccionar</button>
+		</div>
+	</div>
+
+		
+
+    
+
+
+{% endblock %}

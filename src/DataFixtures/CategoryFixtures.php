@@ -10,9 +10,9 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class CategoryFixtures extends Fixture
 {
-    public const NAMES = ['Ordenadores', 'Perifericos', 'Componentes', 'Smartphones', 'Tablets', 'Accesorios',
+    public const NAMES = ['Ordenadores', 'Perifericos', 'Smartphones', 'Tablets', 'Accesorios',
                             'Gadgets'];
-    public const IMAGES = ['desktops.png' , 'periferics.jpg', 'components.jpg',
+    public const IMAGES = ['desktops.png' , 'periferics.jpg',
                         'smartphones.jpg','tablets.jpg' , 'accesories.webp', 'gadgets.jpg'];
     
     public function load(ObjectManager $manager)

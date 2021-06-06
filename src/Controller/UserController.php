@@ -91,11 +91,21 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         $orders = $user->getOrders();
-        return $this->render('user/user_page.html.twig', [
-            'user' => $user,
-            'orders' => $orders
-        ]);
+        if($user->getRoles()[0] == 'ROLE_USER'){
+            return $this->render('user/user_page.html.twig', [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+        }else if($user->getRoles()[0] == 'ROLE_STORE'){
+            $store=$user->getStore();
+            return $this->render('user/store_page.html.twig', [
+                'user' => $user,
+                'store' => $store
+            ]);
+        }
+        
     }
+    //https://ourcodeworld.com/articles/read/53/how-to-upload-a-file-with-jquery-ajax-in-php-or-symfony
 
     /**
      * @Route("/edit", name="user_edit", methods={"GET","POST"})
