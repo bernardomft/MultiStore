@@ -129,17 +129,37 @@ function getSubCategories() {
 }
 
 function showSubcats(subcats) {
-  var str = `<div class="col-4 row justify-content-end" id="subcategoryContainer">
-                    <div class="col-6">Subcategoria</div>
-                <select id="subCategorySelect" class=" col-6 lead form-select" aria-label="Default select example">`;
+  var divP = document.createElement('div');
+  divP.className = "col-4 row justify-content-end";
+  divP.id = "subcategoryContainer";
+
+  var divS = document.createElement('div');
+  divS.className = "col-6";
+  divS.innerHTML = "Subcategoria";
+
+  var select = document.createElement('select');
+  select.id = "subCategorySelect";
+  select.className = "col-6 lead form-select";
+  select.setAttribute("aria-label","Default select example");
+
   for (var i = 0; i < subcats.length; i++) {
-    var strTmp = `<option value="` + subcats[i] + `">` + subcats[i] + `</option>`;
-    str += strTmp;
+    var option = document.createElement('option');
+    option.setAttribute("value", subcats[i]);
+    option.innerHTML = subcats[i];
+    select.appendChild(option);
   }
-  str += `</select>
-      <button class="col-4 btn btn-primary mt-2" onClick="getCaracteristics()">Seleccionar</button></div>`
-  var ele = document.getElementById('containerNewProduct');
-  ele.innerHTML += str;
+  var button = document.createElement("button");
+  button.className = "col-4 btn btn-primary mt-2";
+  button.setAttribute("onClick", "getCaracteristics()")
+  button.innerHTML="Seleccionar";
+
+  divP.appendChild(divS);
+  divP.appendChild(select);
+  divP.appendChild(button);
+  
+  var form = document.getElementById('newProductForm');
+  var div = document.getElementById('containerNewProduct');
+  div.insertBefore(divP,form);
 }
 
 function getCaracteristics(){
@@ -160,19 +180,74 @@ function getCaracteristics(){
 }
 
 function displayFeatures(data){
+  
+  var productFeatures = ["Nombre", "Modelo", "Marca", "Fabricante", "Stock", "Descripción", "Precio", "Descuento", "Dimensiones", "Peso", "Año"];
   var array = data.split('#');
   array[0] = array[0].slice(1);
   array[array.length-1] = array[array.length-1].slice(0,-1);
-  var str = `<form class="col-12">`;
-  for(var i = 0; i < array.length;i++){
-    var strTmp = null;
-    strTmp = `<div class="form-group"><label for="`+ array[i] + `">`+ array[i] +`</label><input type="text" class="form-control" id="`+array[i]+`" name="` + array[i] +`/></div>`;
-    str += strTmp;
-    console.log(strTmp);
+  var form = document.getElementById('newProductForm');
+  for(var i = 0; i<array.length;i++){
+    var div = document.createElement('div');
+    div.className = "form-group";
+    var label = document.createElement('label');
+    label.setAttribute("for",array[i]);
+    label.innerHTML = array[i];
+    var input = document.createElement('input');
+    input.id = array[i];
+    input.setAttribute("type","text");
+    input.setAttribute("name",array[i]);
+    input.className = "form-control";
+    div.appendChild(label);
+    div.appendChild(input);
+    form.appendChild(div);
   }
-  str += `<button type="submit" class="btn btn-primary>Añadir producto</button></form>"`;
-  document.getElementById('containerNewProduct').innerHTML += str;
-  
+
+
+  for(var i = 0; i< productFeatures.length;i++){
+    var tmp = createFormfield(productFeatures[i]);
+    form.appendChild(tmp);
+  }
+
+
+
+
+
+
+  var fileDiv = document.createElement('div');
+  fileDiv.className = "form-group";
+  var fileLabel = document.createElement('label');
+  fileLabel.setAttribute("for","picture");
+  fileLabel.innerHTML = "Picture";
+  var inputFile = document.createElement('input');
+  inputFile.id = "picture";
+  inputFile.setAttribute("type","file");
+  inputFile.setAttribute("name","picture");
+  inputFile.className = "form-control";
+  var button = document.createElement("button");
+  button.setAttribute("type", "submit");
+  button.className = "btn btn-primary";
+  button.innerHTML = "Añadir producto";
+  fileDiv.appendChild(fileLabel);
+  fileDiv.appendChild(inputFile);
+  form.appendChild(fileDiv);
+  form.appendChild(button);
+  form.setAttribute("class","col-12");
+}
+
+function createFormfield(str){
+  var div = document.createElement('div');
+  div.className = "form-group";
+  var label = document.createElement('label');
+  label.setAttribute("for",str);
+  label.innerHTML = str;
+  var input = document.createElement('input');
+  input.id = str;
+  input.setAttribute("type","text");
+  input.setAttribute("name",str);
+  input.className = "form-control";
+  div.appendChild(label);
+  div.appendChild(input);
+  return div;
 }
 
 function inicio() {

@@ -64,10 +64,7 @@ class Product
      */
     private $disscount;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $secondHand;
+    
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
@@ -293,18 +290,7 @@ class Product
         return $this;
     }
 
-    public function getSecondHand(): ?bool
-    {
-        return $this->secondHand;
-    }
-
-    public function setSecondHand(bool $secondHand): self
-    {
-        $this->secondHand = $secondHand;
-
-        return $this;
-    }
-
+   
     public function getDimensions(): ?string
     {
         return $this->dimensions;

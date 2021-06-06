@@ -11,7 +11,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class SubCategoryFixtures extends Fixture implements DependentFixtureInterface
 {
     public const COMPUTERS = ['PC/Sobremesa' ,'Portatil'];
-    public const COMPUTERS_CART = ['ramMemory#ramTechnology#RamFrequency#HardDisk#processorMaker#processorModel#processorVelocity#processorCore#processorCache#graphicMaker#graphicModel#graphicTechnology#graphicCapacity#graphicInterface#usb2_0#usb3_0#hdmi#dvi#bluetooth',
+    public const COMPUTERS_CART = ['Memoria Ram#Tecnologia Ram#Frecuencia Ram#Disco duro#Fabricante del procesador#Modelo del procesador#Velocidad del procesador#Nucleos del procesador#Cache del procesador#Fabricante de la tarjeta de video#modelo de la tarjeta de video#Tecnologia de la tarjeta de Video#capacidad de la tarjeta de video#Interfaz de video#Usb 2.0#Usb3.0#HDMI#DVI#BLUETHOOT',
                                     'none'];
     public const PERIFERICS = ['Teclado' ,'Raton', 'Pantalla'];
     public const ACEESORIES = ['Funda' ,'Cargador', 'Auriculares'];
