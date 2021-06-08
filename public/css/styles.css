@@ -38,7 +38,7 @@
   
 
 
-  @media screen and (max-width: 997.8px) {
+
     
    body{
      font-size: 3em;
@@ -60,13 +60,15 @@
     h5.card-title, a.btn.btn-card{
       font-size: 2em;
     }
-    button.btn.btn-primary, #stockSelect{
+
+
+    h5.button.btn.btn-primary, #stockSelect{
       font-size: 1em;
     }
     a.dropdown-item{
       font-size: 3em;
     }
-    button.btn.btn-secondary{
+    button.btn.btn-secondary,button.btn.btn-primary, a.btn{
       font-size: 1.5em;
     }
     img.img-cart{
@@ -74,17 +76,52 @@
     }
     img.card-img-top{
       height: 500px;
+      max-width: 500px;
+      margin: 0 auto;
     }
     
     table.table{
       overflow-x: auto;
     }
-  }
+
+    .modal-dialog{
+      min-width: 300px;
+    }
+
+    label#emailLabel, label#passLabel, button#signUpbutton{
+      font-size:1.4em;
+    }
+    input#inputEmail,input#inputPassword{
+      font-size: 1em;
+    }
+
+    button#signUpbutton, button#buttonModal{
+        width: 100%;
+    }
+
+    div.form-user > label, p.p{
+      font-size: 1.2em;
+    }
+
+    div.form-user > input{
+      font-size: 0.8em;
+    }
+
+    input#birthday{
+      height: 2em!important;
+    }    
+
+    .text-cart{
+      font-size: 0.9em;
+    }
+
+    
+
 
   @media screen and (min-width: 998px) {
     
     body{
-      font-size: 1.5em;
+      font-size: 1.2em!important;
     }
      h2.h2{
        font-size: 1.8em;
@@ -93,5 +130,14 @@
      h5.card-title, a.btn.btn-card{
        font-size: 2em;
      }
+     div.card{
+      border: 1px solid #838181b4;
+    }
+     img.card-img-top{
+      max-height: 200px!important;
+      max-width: 150px!important;
+      margin: 0 auto;
+    }
+
    }
   

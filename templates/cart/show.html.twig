@@ -4,74 +4,69 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="h1 col-12 text-center">Carrito de compra</h1>
+	<h1 class="h1 col-12 text-center mt-5 mb-5">Carrito de compra</h1>
 
 	<div class="col-12 row justify-content-center ">
-		<div class="d-sm-none d-lg-flex col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
-			<div class="col-1 text-center text-xs-left">
+		<div class="d-sm-none d-lg-flex col-11 row justify-content-center justify-content-lg-start border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+			<div class="col-1 text-left ">
 				Nº
 			</div>
-			<div class="col-4 text-center">
+			<div class="col-4 text-left">
 				Nombre	
 			</div>
-			<div class="col-1 text-center text-xs-left">
+			<div class="col-1 col-lg-2 text-left">
 				Unidades	
 			</div>
-			<div class="col-2 text-center">
+			<div class="col-2 text-left">
 				Descuento(%)	
 			</div>
-			<div class="col-2 text-center">
+			<div class="col-2 text-left">
 				Precio	
 			</div>
-			<div class="col-1 text-center">
-					
-			</div>
+			
 		</div>
 		{% if stock|length > 0 %}
 			{% for i, product in products %}
-				<div class="col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
-					
-					
-					<div class="col-1 text-center">
+				<div class="col-12 col-lg-11 row  justify-content-center justify-content-lg-start d-flex align-items-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+					<div class="text-cart  col-1 col-lg-1 text-center d-sm-none d-lg-flex">
 						{{i + 1}}
 					</div>
-					<div class="col-4 text-center">
-						<a href="#">{{ product.Name }}</a></th>
+					<div class="text-cart col-5 col-lg-4 text-center text-lg-left">
+						<a href="#">{{ product.Name }}</a>
 					</div>
-					<div class="col-1 text-center">
+					<div class="text-cart col-2  d-sm-none d-lg-flex text-center text-lg-left">
 						{{ stock[i] }} (x)
 					</div>
-					<div class="col-2 text-center">
-						{{ product.Disscount }}
+					<div class="text-cart col-1 col-lg-2 text-center text-lg-left">
+						{{ product.Disscount }}%
 					</div>
-					<div class="col-2 text-center">
+					<div class="text-cart col-3 col-lg-1 text-center text-lg-left">
 						{{ product.Price }}$
 					</div>
-					<div class="col-1 text-center">
+					<div class="text-cart col-1 d-flex a-lign-self-start ">
 						<a href="{{asset('/cart/delete/product/' ~  product.id )}}" class="btn btn-danger">X</a>
 					</div>
-					
 				</div>
 				{% set total = total + product.Price * stock[i] - product.Price * product.Disscount / 100 %}
 			{% endfor %}
 		{% endif %}
 		
 	</div>
-	<div class="mt-4 col-11 row justify-content-center align-items-center">
-		<div class=" offset-5  col-2 text-center">
+	<div class="mt-4 mb-5 col-12 row justify-content-center justify-content-lg-end d-lg-flex align-items-center">
+		<div class=" offset-1 offset-lg-4 col-2">
 			TOTAL:
 		</div>
-		<div class="col-2 text-center">
+		<div class="col-9 col-lg-2 text-center text-right">
 			{{total}} $
 		</div>
-		<div class="col-3 text-center row justify-content-lg-end">
+		<div class="col-12 col-lg-4 text-center row justify-content-lg-center d-lg-flex align-items-center">
 			<a 
 			{% if stock|length > 0 %}
 				href="{{asset('/order/newMenu')}}"
 			{% else %}
 				href="#"
 			{% endif  %}
-			 class="col-8 btn btn-primary">Realizar pedido</a>
+			 class=" col-12 col-lg-7 btn btn-primary btn-responsive mt-5">Realizar pedido</a>
 		</div>
 	</div>
 

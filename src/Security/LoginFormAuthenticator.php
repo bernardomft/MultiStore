@@ -22,6 +22,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
@@ -102,7 +103,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
         return new RedirectResponse($this->urlGenerator->generate('app_index'));
-    }
+    }   
 
     protected function getLoginUrl()
     {

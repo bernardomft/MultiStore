@@ -5,38 +5,38 @@
 
 {% block body %}
 <h2 class="h2 col-12 text-center mt-3">Periféricos</h2>
-		<div class="container-fluid col-10 mt-3 row justify-content-around">
+		<div class="container-fluid col-12 mt-3 row justify-lg-content-center justify-xs-content-center">
 			{% for j, product in productsKeyboards %}
-					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+					<div class="col-12 col-lg-3 offset-lg-1 card p-3 mt-5 mb-5" style="width: 18rem;">
 						<img class="card-img-top" src="{{ asset('images/Keyboards/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
 						<div class="card-body">
 							<h5 class="card-title">{{ product.name }}</h5>
 							<p class="card-text">
-								Tipo de escritura:{{ keyboards[j].type}}</p>
+								Tipo de escritura: {{ keyboards[j].type}}</p>
 							<p class="card-text">
-								Tipo de uso :<br>{{ keyboards[j].type2}}</p>
+								Tipo de uso : {{ keyboards[j].type2}}</p>
 							<p class="card-text">
-								Conexión:
+								Conexión: 
 								{{ keyboards[j].connector}}</p>
-							<p class="card-text">Stock:
+							<p class="card-text">Stock: 
 								{{ product.stock}}</p>
-							<p class="card-text">Precio:
+							<p class="card-text">Precio: 
 								{{ product.price}}
 								$</p>
-							<a href=" {{ asset('/product/getProduct/Teclado/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+							<a href=" {{ asset('/product/getProduct/Teclado/' ~ product.id ) }} " class="col-12 btn btn-primary btn-card">Ver producto</a>
 						</div>
 					</div>
 			{% endfor %}
 
 			{% for j, product in productsMouses %}
-					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+					<div class="col-12 col-lg-3 offset-lg-1 card p-3 mt-5 mb-5" style="width: 18rem;">
 						<img class="card-img-top" src="{{ asset('images/Mouses/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
 						<div class="card-body">
-							<h5 class="card-title">{{ product.name }}</h5>
+							<h5 class="card-title">{{ product.name }} </h5>
 							<p class="card-text">
-								Tipo de raton:{{ mouses[j].type}}</p>
+								Tipo de raton: {{ mouses[j].type}}</p>
 							<p class="card-text">
-								Tipo de uso :<br>{{ mouses[j].type2}}</p>
+								Tipo de uso : {{ mouses[j].type2}}</p>
 							<p class="card-text">
 								Conexión:
 								{{ mouses[j].connector}}</p>
@@ -45,30 +45,31 @@
 							<p class="card-text">Precio:
 								{{ product.price}}
 								$</p>
-							<a href=" {{ asset('/product/getProduct/Raton/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+						
+							<a href=" {{ asset('/product/getProduct/Raton/' ~ product.id ) }} " class="col-12 btn btn-primary btn-card">Ver producto</a>
 						</div>
 					</div>
 			{% endfor %}
 
 			{% for j, product in productsScreens %}
-					<div class=" col-3 offset-1 card p-3 mt-5" style="width: 18rem;">
+					<div class="col-12 col-lg-3 offset-lg-1 card p-3 mt-5 mb-5" style="width: 18rem;">
 						<img class="card-img-top" src="{{ asset('images/Screens/' ~ product.picture ) }}" alt="Card image cap" width"250px" height="250px"/>
 						<div class="card-body">
 							<h5 class="card-title">{{ product.name }}</h5>
 							<p class="card-text">
 								Tamaño: {{ screens[j].size}}</p>
 							<p class="card-text">
-								Resolucion :<br>{{ screens[j].resolution}} 
+								Resolucion : {{ screens[j].resolution}} 
 								- {{ screens[j].resolutionPx}}</p>
 							<p class="card-text">
-								Conector:
+								Conector: 
 								{{ screens[j].connectors}}</p>
-							<p class="card-text">Stock:
+							<p class="card-text">Stock: 
 								{{ product.stock}}</p>
-							<p class="card-text">Precio:
+							<p class="card-text">Precio: 
 								{{ product.price}}
 								$</p>
-							<a href=" {{ asset('/product/getProduct/Pantalla/' ~ product.id ) }} " class="btn btn-primary">Ver producto</a>
+							<a href=" {{ asset('/product/getProduct/Pantalla/' ~ product.id ) }} " class="col-12 btn btn-primary btn-card ">Ver producto</a>
 						</div>
 					</div>
 			{% endfor %}

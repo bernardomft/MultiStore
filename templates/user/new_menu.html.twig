@@ -3,42 +3,44 @@
 {% block title %}Nuevo Usuario{% endblock %}
 
 {% block body %}
-    <h1 class="h1 col-12">Nuevo usuario</h1>
+    <h1 class="h1 col-12 text-center mb-5 mt-5">Nuevo usuario</h1>
     {% for message in app.flashes('error') %}
     <div class="flash-error">
         {{ message }}
     </div>
     {% endfor %}
-    <form method="POST" action="{{asset('/user/new')}}" class="col-12 form row justify-content-center">
-        <div class="form-group">
-            <label for="name">Nombre: </label>
-            <input id="name" name="name" type="text" class="form-control" placeholder="">
+    <form method="POST" action="{{asset('/user/new')}}" class="col-12 row justify-content-center mb-5">
+        <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <label for="name" class="col-5 col-lg-2 col-lg-2" >Nombre: </label>
+            <input id="name"  class="col-6 form-control" name="name" type="text" placeholder="">
         </div>
-        <div class="form-group">
-            <label for="surname">Apellidos: </label>
-            <input id="surname" name="surname" type="text" class="form-control" placeholder="">
+        <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <label class="col-5 col-lg-2" for="surname">Apellidos: </label>
+            <input  class="col-6 form-control"  id="surname" name="surname" type="text"  placeholder="">
         </div>
-         <div class="form-group">
-            <label for="address">Direccion: </label>
-            <input id="address" name="address" type="text" class="form-control" placeholder="">
+         <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <label class="col-5 col-lg-2" for="address">Direccion: </label>
+            <input  class="col-6 form-control"  id="address" name="address" type="text"  placeholder="">
         </div>
-         <div class="form-group">
-            <label for="email">Email: </label>
-            <input id="email" name="email" type="text" class="form-control" placeholder="">
+         <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <label class="col-5 col-lg-2" for="email">Email: </label>
+            <input  class="col-6 form-control"  id="email" name="email" type="text"  placeholder="">
         </div>
-         <div class="form-group">
-            <label for="username">Nombre de usuario: </label>
-            <input id="username" name="username" type="text" class="form-control" placeholder="">
+         <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <label class="col-5 col-lg-2" for="username">Nombre de usuario: </label>
+            <input  class="col-6 form-control"  id="username" name="username" type="text"  placeholder="">
         </div>
-         <div class="form-group">
-            <label for="password">Contraseña: </label>
-            <input id="password" name="password" type="text" class="form-control" placeholder="">
+         <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <label class="col-5 col-lg-2" for="password">Contraseña: </label>
+            <input  class="col-6 form-control"  id="password" name="password" type="text"  placeholder="">
         </div>
-        <div class="form-group">
-            <label for="birthday">Fecha de nacimiento: </label>
-            <input id="birthday" name="birthday" type="date" class="form-control" placeholder="">
+        <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <label class="col-5 col-lg-2" for="birthday">Fecha de nacimiento: </label>
+            <input  class="col-6 form-control datepicker"  id="birthday" name="birthday" type="date"   placeholder="">
         </div>
-        <button type="submit" class="btn btn-primary">Crear usuario</button>
+         <div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <button type="submit" class="btn btn-primary col-11 col-lg-6 offset-lg-2  btn-responsive mt-4">Crear usuario</button>
+        </div> 
     </form>
     
 {% endblock %}

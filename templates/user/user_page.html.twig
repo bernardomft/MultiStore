@@ -4,77 +4,93 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="h1 col-12 text-center">Historial de pedidos: </h1>
-    {% for order in orders %}
-        <div class="col-12">
-            <div> {{order.date|date('d/m/Y')}}</div>
-        </div>
-        <div class="col-12">
-            <div> {{order.amount}} $</div>
-        </div>
-         <div class="col-12">
-            <div> {{order.address}}</div>
-        </div>
-        <div class="col-12">
-            <div> {{order.state}}</div>
-        </div>
-    {% endfor %}
-	<h1 class="h1 col-12 text-center">Información de usuario</h1>
-	<div class="col-12 row justify-content-start">
-		<div class="col-6 row justify-content-start">
-			<p class="p">Nombre:</p>
-			<p class="p">{{user.name}}</p>
+	<h1 class="h1 col-12 text-center">Historial de pedidos:
+	</h1>
+	<div class="col-12 row justify-content-center ">
+		<div class="d-sm-none d-lg-flex col-11 row justify-content-center justify-content-lg-start border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+			<div class="col-lg-3 text-lg-center ">
+				Fecha
+			</div>
+			<div class="col-lg-5 text-lg-center">
+				Dirección de envío	
+			</div>
+			<div class="col-1 col-lg-2 text-center">
+				Precio total	
+			</div>
+			<div class="col-lg-2 text-center">
+				Estado del pedido	
+			</div>
+			
+		</div>
+		<div class="col-11 row justify-content-center justify-content-lg-start border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+			{% for order in orders %}
+				<div class="col-12 col-lg-3 text-lg-center">
+					<div>
+						{{order.date|date('d/m/Y')}}</div>
+				</div>
+				<div class="col-12 col-lg-5 text-lg-center">
+					<div>
+						{{order.address}}</div>
+				</div>
+				<div class="col-12 col-lg-2 text-lg-center">
+					<div>
+						{{order.amount}}
+						$</div>
+				</div>
+				<div class="col-12 col-lg-2 text-lg-center">
+					<div>
+						{{order.state}}</div>
+				</div>
+			{% endfor %}
 		</div>
 	</div>
-	<div class="col-12 row justify-content-start">
-		<div class="col-6 row justify-content-start">
-			<p class="p">Apellidos:</p>
-			<p class="p">{{user.surname}}</p>
-		</div>
+	<h1 class="h1 col-12 text-center mt-5 mb-5">Información de usuario</h1>
+	<div class="col-12 col-lg-4 row justify-content-center  d-flex align-items-center mt-2">
+		<p class="p col-4 ">Nombre:
+		</p>
+		<p class="p col-6 ">{{user.name}}</p>
 	</div>
-	
-	<div class="col-12 row justify-content-start">
-		<div class="col-6 row justify-content-start">
-			<p class="p">Dirección:</p>
-			<p class="p">{{user.address}}</p>
-		</div>
+	<div class="col-12 col-lg-4 row justify-content-center  d-flex align-items-center">
+		<p class="p col-4">Apellidos:
+		</p>
+		<p class="p col-6">{{user.surname}}</p>
 	</div>
-	<div class="col-12 row justify-content-start">
-		<div class="col-6 row justify-content-start">
-			<p class="p">Email:</p>
-			<p class="p">{{user.email}}</p>
-		</div>
-	</div>
-	<div class="col-12 row justify-content-start">
-		<div class="col-6 row justify-content-start">
-			<p class="p">Nombre de usuario:</p>
-			<p class="p">{{user.username}}</p>
-		</div>
-	</div>
-		<div class="col-12 row justify-content-start">
-		<div class="col-6 row justify-content-start">
-			<p class="p">Fecha de nacimiento:</p>
-			<p class="p">{{user.birthday|date('d/m/Y')}}</p>
-		</div>
-	</div>
-    <h1 class="h1 col-12 text-center">Edicion de Información</h1>
-	<form method="POST" action="{{asset('/user/edit')}}" class="col-12">
-        <div class="form-group">
-			<label for="name">Nombre: </label>
-			<input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="" value="{{user.name}}">
-		</div>
-        <div class="form-group">
-			<label for="surname">Apellidos: </label>
-			<input type="text" name="surname" class="form-control" id="surname" aria-describedby="emailHelp" placeholder="" value="{{user.surname}}">
-		</div>
-         <div class="form-group">
-			<label for="address">Dirección: </label>
-			<input type="text" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="" value="{{user.address}}">
-		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
 
-    
+	<div class="col-12 col-lg-4 row justify-content-center  d-flex align-items-center">
+		<p class="p col-4">Dirección:</p>
+		<p class="p col-6">{{user.address}}</p>
+	</div>
+	<div class="col-12 col-lg-4 row justify-content-center  d-flex align-items-center">
+		<p class="p col-4">Email:</p>
+		<p class="p col-6">{{user.email}}</p>
+	</div>
+	<div class="col-12 col-lg-4  row justify-content-center d-flex align-items-center">
+		<p class="p col-4">Nombre de usuario:</p>
+		<p class="p col-6">{{user.username}}</p>
+	</div>
+	<div class="col-12  col-lg-4 row justify-content-center d-flex align-items-center mb-2">
+		<p class="p col-4">Fecha de nacimiento:</p>
+		<p class="p col-6">{{user.birthday|date('d/m/Y')}}</p>
+	</div>
+	<h1 class="h1 col-12 text-center mt-5 mb-5">Edicion de Información</h1>
+	<form method="POST" action="{{asset('/user/edit')}}" class="col-12 row justify-content-center mt-2 mb-5">
+		<div class=" form-group col-12  row justify-content-center align-items-center form-user">
+			<label class="col-4 col-lg-2 " for="name">Nombre:
+			</label>
+			<input type="text" name="name" class="col-6 form-control" id="name" aria-describedby="emailHelp" placeholder="" value="{{user.name}}">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-4 col-lg-2" for="surname">Apellidos:
+			</label>
+			<input type="text" name="surname" class="col-6 form-control" id="surname" aria-describedby="emailHelp" placeholder="" value="{{user.surname}}">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-4 col-lg-2 " for="address">Dirección:
+			</label>
+			<input type="text" name="address" class="col-6 form-control" id="address" aria-describedby="emailHelp" placeholder="" value="{{user.address}}">
+		</div>
+		<button type="submit" class="btn btn-primary col-11 col-lg-6 offset-lg-2  btn-responsive mt-4">Editar</button>
+	</form>
 
 
 {% endblock %}

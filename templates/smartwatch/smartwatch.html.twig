@@ -4,51 +4,52 @@
 {% endblock %}
 
 {% block body %}
-	<div class="col-12 row justify-content-around mt-5">
-		<div class="col-4">
+	<div class="col-12 row justify-content-xs-center justify-content-lg-around mt-5">
+		<div class="col-xs-11 col-lg-4 offset-xs-1 offset-lg-1 row justify-content-center">
 			<img class="" src="{{ asset('images/Smartwatchs/' ~ product.picture ) }}" alt="Card image cap" width"500px" height="500px"/>
 		</div>
 
-		<div class="col-6 row align-content-start">
-			<h1 class="h2 col-12">
+		<div class="col-xs-11 col-lg-6 row justify-content-xs-center justify-content-lg-start">
+			<h1 class="h2 col-xs-3 offset-xs-1 col-lg-11 mt-4 text-center text-lg-left">
 				{{product.name}}
 			</h1>
-			<h4 class="h4 offset-1 col-11 mt-4 lead">
+			<h4 class="h4 col-xs-3 col-lg-11 mt-4 lead">
 				Fabricante:
 				{{product.mark}}
 			</h4>
-			<h4 class="h4 offset-1 col-11 mt-4 lead">
+			<h4 class="h4 col-xs-3 col-lg-11 mt-4 lead">
 				Modelo:
 				{{product.model}}
 			</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
+			<h4 class="h4 col-xs-3 col-lg-11 mt-4 lead">
 				S.O.: 
 				{{smartwatch.so}}
 			</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
+			<h4 class="h4 col-xs-3 col-lg-11 mt-4 lead">
 				Calidad de imagen
 				{{smartwatch.resolution}}</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
+			<h4 class="h4 col-xs-3 col-lg-11 mt-4 lead">
 				Resolución:
 				{{ smartwatch.resolutionPx}}</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
+			<h4 class="h4 col-xs-3 col-lg-11 mt-4 lead">
 				Tecnología:
 				{{ smartwatch.technology}}</h4>
-			<h4 class=" offset-1 col-11 mt-4 lead">
+			<h4 class="h4 col-xs-3 col-lg-11 mt-4 lead">
 				Precio:
 				{{product.price}}
 				$</h4>
-			<select id="stockSelect"class="offset-1 col-4 mt-4 lead form-select" aria-label="Default select example">
+			<select id="stockSelect"class="col-xs-12  col-lg-6 mt-4 lead form-select" aria-label="Default select example">
 				<option selected>1</option>
                 {% for i in 2..product.stock %}
                     <option value="1">{{ i }}</option>
                 {% endfor %}
 			</select>
-			<a href="#" onclick='addToCart({{ product.id }})' class=" offset-1 col-6 mt-4 lead btn btn-primary">
+			<div class="w-100"></div>
+			<button href="" onClick="checkAddCart({{product.id}})"  class=" col-xs-12 col-lg-6 mt-4 lead btn btn-primary">
 				Añadir al carrito
-			</a>
+			</button>
 		</div>
-		<div class="col-6 mt-3 row">
+		<div class="col-xs-11 col-lg-6 mt-3 row">
 			<h2 class="h2 col-12">
 				Descripciónn</h2>
 			<p class="p col-12 leaf text-align-justify">
@@ -67,10 +68,6 @@
 					<tr>
 						<th scope="row">Modelo</th>
 						<td>{{product.model}}</td>
-					</tr>
-					<tr>
-						<th scope="row">Segunda Mano</th>
-						<td>{{product.secondHand}}</td>
 					</tr>
 					<tr>
 						<th scope="row">Dimensiones</th>

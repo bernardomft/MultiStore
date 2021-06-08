@@ -1,99 +1,115 @@
 {% extends 'base.html.twig' %}
 {% set total = 0 %}
 
-{% block title %}New Order{% endblock %}
+{% block title %}New Order
+{% endblock %}
 
 {% block body %}
-    <h1 class="h1 col-12 text-center">Realiza tu pedido</h1>
-    <div class="col-12 row justify-content-center ">
-		<div class="d-sm-none d-lg-flex col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
-			<div class="col-1 text-center text-xs-left">
+	<h1 class="h1 col-12 text-center">Realiza tu pedido</h1>
+	<div class="col-12 row justify-content-center ">
+		<div class="d-sm-none d-lg-flex col-11 row justify-content-center justify-content-lg-start border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+			<div class="col-1 text-left ">
 				Nº
 			</div>
-			<div class="col-4 text-center">
-				Nombre	
+			<div class="col-4 text-left">
+				Nombre
 			</div>
-			<div class="col-2 text-center text-xs-left">
-				Unidades	
+			<div class="col-1 col-lg-2 text-left">
+				Unidades
 			</div>
-			<div class="col-2 text-center">
-				Descuento(%)	
+			<div class="col-2 text-left">
+				Descuento(%)
 			</div>
-			<div class="col-3 text-center">
-				Precio	
+			<div class="col-2 text-left">
+				Precio
 			</div>
 		</div>
 		{% for i, product in products %}
-			<div class="col-11 row justify-content-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
-				<div class="col-1 text-center">
+			<div class="col-12 col-lg-11 row  justify-content-center justify-content-lg-start d-flex align-items-center border border-top-0 border-left-0 border-right-0 border-bottom-1 border-primary mt-3 p-2">
+				<div class="text-cart  col-1 col-lg-1 text-center d-sm-none d-lg-flex">
 					{{i + 1}}
 				</div>
-				<div class="col-4 text-center">
-					<a href="#">{{ product.Name }}</a></th>
+				<div class="text-cart col-5 col-lg-4 text-center text-lg-left">
+					<a href="#">{{ product.Name }}</a>
 				</div>
-				<div class="col-2 text-center">
-					{{ stock[i] }} (x)
+				<div class="text-cart col-2  d-sm-none d-lg-flex text-center text-lg-left">
+					{{ stock[i] }}
+					(x)
 				</div>
-				<div class="col-2 text-center">
-					{{ product.Disscount }}
+				<div class="text-cart col-1 col-lg-2 text-center text-lg-left">
+					{{ product.Disscount }}%
 				</div>
-				<div class="col-3 text-center">
+				<div class="text-cart col-3 col-lg-1 text-center text-lg-left">
 					{{ product.Price }}$
+				</div>
+				<div class="text-cart col-1 d-flex a-lign-self-start ">
+					<a href="{{asset('/cart/delete/product/' ~ product.id )}}" class="btn btn-danger">X</a>
 				</div>
 			</div>
 			{% set total = total + product.Price * stock[i] - product.Price * product.Disscount / 100 %}
 		{% endfor %}
 	</div>
-    <div class="mt-4 col-11 row justify-content-center align-items-center">
-		<div class=" offset-8  col-2 text-center">
+	<div class="mt-4 mb-5 col-12 row justify-content-center justify-content-lg-center d-lg-flex align-items-center">
+		<div class=" offset-1 offset-lg-2 col-2">
 			TOTAL:
 		</div>
-		<div class="col-2 text-center">
+		<div class="col-9 col-lg-2 text-center text-right">
 			{{total}} $
 		</div>
 	</div>
-    <form class="" method="POST" action="{{asset('/order/new')}}">
-        <div class="form-group">
-            <label for="street">Calle: </label>
-            <input id="street" name="street" type="text" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="number">Número: </label>
-            <input id="number" name="number" type="number" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="floor">Piso: </label>
-            <input id="floor" name="floor" type="text" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="door">Puerta: </label>
-            <input id="door" name="door" type="text" class="form-control" placeholder="">
-        </div>
-         <div class="form-group">
-            <label for="city">Población: </label>
-            <input id="city" name="city" type="text" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="zip">Código postal: </label>
-            <input id="zip" name="zip"  type="text" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="region">Provincia: </label>
-            <input id="region" name="region"  type="text" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="card_number">Número tarjeta: </label>
-            <input id="card_number" name="card_number"  type="text" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="off_date">Fecha caducidad: </label>
-            <input id="off_date" name="off_date"  type="text" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="ccv">CCV: </label>
-            <input id="ccv" name="ccv"  type="text" class="form-control" placeholder="">
-        </div>
-        <button type="submit" class="btn btn-primary">Pagar</button>
-    </form>
-
+	<form class="col-12 row justify-content-center mb-5" method="POST" action="{{asset('/order/new')}}">
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="street">Calle:
+			</label>
+			<input id="street" name="street" type="text" class="form-control col-6" placeholder="">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="number">Número:
+			</label>
+			<input id="number" name="number" type="number" class="form-control col-6" placeholder="">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="floor">Piso:
+			</label>
+			<input id="floor" name="floor" type="text" class="form-control col-6" placeholder="">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="door">Puerta:
+			</label>
+			<input id="door" name="door" type="text" class="form-control col-6" placeholder="">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="city">Población:
+			</label>
+			<input id="city" name="city" type="text" class="form-control col-6" placeholder="">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="zip">Código postal:
+			</label>
+			<input id="zip" name="zip" type="text" class="form-control col-6" placeholder="" maxlenght="5">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="region">Provincia:
+			</label>
+			<input id="region" name="region" type="text" class="form-control col-6" placeholder="">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="card_number">Número tarjeta:
+			</label>
+			<input id="card_number" name="card_number" type="number" class="form-control col-6" placeholder="" max-lenght="16">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="off_date">Fecha caducidad:
+			</label>
+			<input id="off_date" name="off_date" type="date" class="form-control col-6" placeholder="">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+			<label class="col-5 col-lg-2 col-lg-2" for="ccv">CCV:
+			</label>
+			<input id="ccv" name="ccv" type="number" class="form-control col-6" placeholder="" maxlenght="3">
+		</div>
+		<div class="form-group col-12 row justify-content-center align-items-center form-user">
+            <button type="submit" class="btn btn-primary col-11 col-lg-6 offset-lg-2  btn-responsive mt-4">Pagar</button>
+        </div> 
+	</form>
 {% endblock %}
