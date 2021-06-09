@@ -1,5 +1,5 @@
 <nav class="col-12 display-xs-1 display-lg-1 navbar navbar-expand-lg navbar-light bg-light" id="barraNavegacion">
-	<a class="navbar-brand" href="#">ICON_PLACE</a>
+	<a class="navbar-brand" href="#">MultiStore</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -28,46 +28,6 @@
 							</li>
 							<li>
 								<a class="dropdown-item" href="{{ asset('/listSubCategories/Portatiles')}}">Portátiles</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="dropdown-submenu">
-						<a class="dropdown-item dropdown-toggle" href="#">Periféricos</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="{{ asset('/listSubCategories/Teclado')}}">Teclado</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ asset('/listSubCategories/Raton')}}">Ratón</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ asset('/listSubCategories/Pantalla')}}">Pantalla</a>
-							</li>
-						</ul>
-					</li>
-
-
-					<li class="dropdown-submenu">
-						<a class="dropdown-item dropdown-toggle" href="#">Smartphones</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="#">PC/Sobremesa</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">Another submenu action</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="dropdown-submenu">
-						<a class="dropdown-item dropdown-toggle" href="#">Tablets</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="#">PC/Sobremesa</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">Another submenu action</a>
 							</li>
 						</ul>
 					</li>
@@ -103,12 +63,6 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Sobre Nosotros</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Trabaja con MultiStore</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Contacto</a>
 			</li>
 		</ul>
 		<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -153,13 +107,13 @@
 
 				<div class="btn-group mr-2" role="group" aria-label="Second group">
 					<a href="{{asset('user/new/menu')}}">
-						<button type="button" class="btn btn-secondary">Sing Up</button>
+						<button type="button" class="btn btn-secondary" id="singInButton">Sing In</button>
 					</a>
 				</div>
 			{% endif %}
 			<div class="btn-group mr-2" role="group" aria-label="Second group">
 				<a class="" href="#">
-					<button type="button"  onClick="checkUser()" class="btn btn-secondary">
+					<button type="button" id="cartButton" onClick="checkUser()" class="btn btn-secondary">
 						<img class="img-cart" src="{{ asset('images/carro-de-la-compra.png') }}" width="25px"/>
 					</button>
 				</a>
