@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Productos
+{% endblock %}
+
+{% block body %}
+	<div class="container col-12  index-image p-5">
+		<div class="row justify-content-center align-items-between">
+			<h2 class="h2 col-12 text-center">Tu tienda online de confianza</h2>
+			<p class=" col-12  text-justify mt-2 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id porta magna. Sed et eleifend elit. Donec vitae leo vitae augue volutpat ultrices eu ut velit. Quisque ac arcu felis. Ut aliquet, nibh eu consequat maximus, erat orci ullamcorper nibh, a molestie lectus lorem eget arcu. Donec molestie urna sapien, quis ornare diam luctus in. Maecenas dapibus aliquet lacus, in elementum erat fermentum id. Cras velit metus, porttitor pharetra ullamcorper at, iaculis id purus.
+																	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id porta magna. Sed et eleifend elit. Donec vitae leo vitae augue volutpat ultrices eu ut velit. Quisque ac arcu felis. Ut aliquet, nibh eu consequat maximus, erat orci ullamcorper nibh, a molestie lectus lorem eget arcu. Donec molestie urna sapien, quis ornare diam luctus in. Maecenas dapibus aliquet lacus, in elementum erat fermentum id. Cras velit metus, porttitor pharetra ullamcorper at, iaculis id purus.</p>
+		</div>
+	</div>
+
+	<div class="container-fluid  row justify-content-center">
+		<div class="row">
+			<h2 class="h2 col-12 text-center mt-5">Contacta con nosotros</h2>
+			<form method="POST" action="#" class="col-12 row justify-content-center mt-2 mb-5">
+				<div class=" form-group col-12  row justify-content-center align-items-center form-user">
+					<label class="col-4 col-lg-2 " for="name">Nombre:
+					</label>
+					<input type="text" name="name" class="col-6 form-control"  value="Nombre">
+				</div>
+				<div class="form-group col-12 row justify-content-center align-items-center form-user">
+					<label class="col-4 col-lg-2" for="surname">Apellidos:
+					</label>
+					<input type="text" name="surname" class="col-6 form-control"  value="Apellidos">
+				</div>
+				<div class="form-group col-12 row justify-content-center align-items-center form-user">
+					<label class="col-4 col-lg-2 " for="address">Email:
+					</label>
+					<input type="email" name="address" class="col-6 form-control"  value="email">
+				</div>
+				<div class="form-group col-12 row justify-content-center align-items-center form-user">
+					<label class="col-4 col-lg-2 " for="coment">Mensaje:
+					</label>
+					<textarea name="coment" class="form-control col-6 form-control"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary col-11 col-lg-6 offset-lg-2  btn-responsive mt-4">Enviar</button>
+			</form>
+		</div>
+	</div>
+
+
+{% endblock %}

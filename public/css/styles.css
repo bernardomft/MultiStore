@@ -179,7 +179,10 @@ input#birthday {
 .text-cart {
   font-size: 0.9em;
 }
-
+ 
+p.banner{
+  font-weight: bold!important;
+}
 
 
 
