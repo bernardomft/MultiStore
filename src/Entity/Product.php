@@ -114,15 +114,9 @@ class Product
      */
     private $screens;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Smartphone::class, mappedBy="idProduct")
-     */
-    private $smartphones;
+    
 
-    /**
-     * @ORM\OneToMany(targetEntity=Tablet::class, mappedBy="idProduct")
-     */
-    private $tablets;
+    
 
     /**
      * @ORM\OneToMany(targetEntity=Headphones::class, mappedBy="idProduct")
@@ -155,11 +149,7 @@ class Product
      */
     private $cart;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="Products")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $store;
+    
 
     public function __construct()
     {
@@ -168,8 +158,6 @@ class Product
         $this->Mouse = new ArrayCollection();
         $this->keyboards = new ArrayCollection();
         $this->screens = new ArrayCollection();
-        $this->smartphones = new ArrayCollection();
-        $this->tablets = new ArrayCollection();
         $this->headphones = new ArrayCollection();
         $this->chargers = new ArrayCollection();
         $this->deviceCases = new ArrayCollection();
@@ -491,65 +479,7 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection|Smartphone[]
-     */
-    public function getSmartphones(): Collection
-    {
-        return $this->smartphones;
-    }
 
-    public function addSmartphone(Smartphone $smartphone): self
-    {
-        if (!$this->smartphones->contains($smartphone)) {
-            $this->smartphones[] = $smartphone;
-            $smartphone->setIdProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSmartphone(Smartphone $smartphone): self
-    {
-        if ($this->smartphones->removeElement($smartphone)) {
-            // set the owning side to null (unless already changed)
-            if ($smartphone->getIdProduct() === $this) {
-                $smartphone->setIdProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Tablet[]
-     */
-    public function getTablets(): Collection
-    {
-        return $this->tablets;
-    }
-
-    public function addTablet(Tablet $tablet): self
-    {
-        if (!$this->tablets->contains($tablet)) {
-            $this->tablets[] = $tablet;
-            $tablet->setIdProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTablet(Tablet $tablet): self
-    {
-        if ($this->tablets->removeElement($tablet)) {
-            // set the owning side to null (unless already changed)
-            if ($tablet->getIdProduct() === $this) {
-                $tablet->setIdProduct(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Headphones[]
@@ -713,15 +643,4 @@ class Product
         return $this;
     }
 
-    public function getStore(): ?Store
-    {
-        return $this->store;
-    }
-
-    public function setStore(?Store $store): self
-    {
-        $this->store = $store;
-
-        return $this;
-    }
 }

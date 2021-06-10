@@ -47,8 +47,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture(self::PICTURES[$i]);
             $product->setPrice(self::PRICE[$i]);
             $product->setDisscount(self::DISCOUNT[$i]);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Ordenadores'));
             $manager->persist($product);
             $manager->flush();
@@ -66,8 +64,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture(self::PICTURES[$i]);
             $product->setPrice(self::PRICE[$i]);
             $product->setDisscount(self::DISCOUNT[$i]);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Ordenadores'));
             $manager->persist($product);
             $manager->flush();
@@ -85,8 +81,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('MackBookPro13.jpg');
             $product->setPrice(1449.00);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Ordenadores'));
             $manager->persist($product);
             $manager->flush();
@@ -104,8 +98,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('Logitech_G915_LIGHTSPEED.jpg');
             $product->setPrice(194.99);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Perifericos'));
             $manager->persist($product);
             $manager->flush();
@@ -124,8 +116,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('HP_X500.jpg');
             $product->setPrice(8.99);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Perifericos'));
             $manager->persist($product);
             $manager->flush();
@@ -143,8 +133,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('Samsung _C27F390.webp');
             $product->setPrice(149.00);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Perifericos'));
             $manager->persist($product);
             $manager->flush();
@@ -162,8 +150,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('Apple_Watch_SE.jpg');
             $product->setPrice(359.00);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Gadgets'));
             $manager->persist($product);
             $manager->flush();
@@ -181,8 +167,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('Logitech_C920s-HD_Pro.jpg');
             $product->setPrice(86.61);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Gadgets'));
             $manager->persist($product);
             $manager->flush();
@@ -200,8 +184,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('fundaApple.jpg');
             $product->setPrice(54.99);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Accesorios'));
             $manager->persist($product);
             $manager->flush();
@@ -220,8 +202,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('cargador.jpg');
             $product->setPrice(54.99);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Accesorios'));
             $manager->persist($product);
             $manager->flush();
@@ -240,8 +220,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $product->setPicture('earpods.jpg');
             $product->setPrice(15.99);
             $product->setDisscount(0);
-            $product->setSecondHand(false);
-            $product->setStore($this->getReference('MultiStore'));
             $product->setIdCategory($this->getReference('Accesorios'));
             $manager->persist($product);
             $manager->flush();
@@ -254,7 +232,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            StoreFixture::class,
             CategoryFixtures::class,
         ];
     }

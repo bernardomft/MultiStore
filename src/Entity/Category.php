@@ -39,15 +39,7 @@ class Category
      */
     private $subCategories;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Smartphone::class, mappedBy="idCategory")
-     */
-    private $smartphones;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Tablet::class, mappedBy="idCategory")
-     */
-    private $tablets;
+   
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -58,8 +50,6 @@ class Category
     {
         $this->products = new ArrayCollection();
         $this->subCategories = new ArrayCollection();
-        $this->smartphones = new ArrayCollection();
-        $this->tablets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,65 +141,7 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection|Smartphone[]
-     */
-    public function getSmartphones(): Collection
-    {
-        return $this->smartphones;
-    }
-
-    public function addSmartphone(Smartphone $smartphone): self
-    {
-        if (!$this->smartphones->contains($smartphone)) {
-            $this->smartphones[] = $smartphone;
-            $smartphone->setIdCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSmartphone(Smartphone $smartphone): self
-    {
-        if ($this->smartphones->removeElement($smartphone)) {
-            // set the owning side to null (unless already changed)
-            if ($smartphone->getIdCategory() === $this) {
-                $smartphone->setIdCategory(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Tablet[]
-     */
-    public function getTablets(): Collection
-    {
-        return $this->tablets;
-    }
-
-    public function addTablet(Tablet $tablet): self
-    {
-        if (!$this->tablets->contains($tablet)) {
-            $this->tablets[] = $tablet;
-            $tablet->setIdCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTablet(Tablet $tablet): self
-    {
-        if ($this->tablets->removeElement($tablet)) {
-            // set the owning side to null (unless already changed)
-            if ($tablet->getIdCategory() === $this) {
-                $tablet->setIdCategory(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     public function getImage(): ?string
     {

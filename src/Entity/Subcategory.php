@@ -85,10 +85,7 @@ class SubCategory
      */
     private $webcams;
 
-    /**
-     * @ORM\Column(type="string", length=1200, nullable=true)
-     */
-    private $caracteristics;
+    
 
    
 
